@@ -16,13 +16,18 @@
 			"hang"=>$hang,
 			"mucgia"=>$mucgia
 			);
-			$this->model->createFlightDetail($params);
+			return $this->model->createFlightDetail($params);
 			
 		}
 		public function getList()
 		{
 			$list=$this->model->getList();
-			echo json_encode($list);
+			if($list != false){
+			    return json_encode($list);
+			}
+			else{
+			    return $list;
+			}
 		}
 		
 	}

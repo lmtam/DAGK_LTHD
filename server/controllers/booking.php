@@ -9,11 +9,16 @@
 		}
 		public function createBooking($madc)
 		{
-			$this->model->createBooking($madc);
+			return $this->model->createBooking($madc);
 		}
 		public function getBookingInfo()
 		{
-			$this->model->getBookingInfo();
+			$list =  $this->model->getBookingInfo();
+			if($list != false){
+                return json_encode($list);
+            } else{
+                return $list;
+            }
 		}
 		public function updateBooking($madc,$para_name,$para_value)
 		{
@@ -25,7 +30,7 @@
 			{
 				return;
 			}
-			$this->model->updateBooking($madc,$para_name,$para_value);
+			return $this->model->updateBooking($madc,$para_name,$para_value);
 		}
 		
 	}

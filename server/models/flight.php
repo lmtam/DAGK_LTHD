@@ -60,10 +60,12 @@
 				$a->bindParam("macb",$macb,PDO::PARAM_STR);
 				$a->execute();
 				$this->Disconnection();
+				return true;
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false;
 			}
 		}
 	}

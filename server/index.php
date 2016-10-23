@@ -5,13 +5,15 @@
 	require_once ("controllers/flightdetail.php");
 	$app=new \Slim\App();
 	
-	
+
 	//$con->showDepartureAirportList();
 	//$con->showArrivalAirportList("SGN");
 	
-	$app->get("/",function($request,$response)
+	$app->get("/flight",function($request,$response)
 	{
-
+	    $con = new Flight_Controller();
+        $result = $con->showDepartureAirportList();
+         echo $result;
 
 	});
 	$app->run();

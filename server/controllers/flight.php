@@ -11,30 +11,39 @@
 		public function showDepartureAirportList()
 		{
 			$list=$this->model->getDepartureAirportList();
-			echo json_encode($list);
+			if($list != false){
+			    return json_encode($list);
+		    } else{
+		        return $list;
+		    }
 		}
 		public function showArrivalAirportList($noidi)
 		{
 			
 			if(empty($noidi))
 			{
-				echo "Xin chọn sân bay đi";
-				return;
+				return "Xin chọn sân bay đi";
+
 			}
 			$list=$this->model->getArrivalAirportList($noidi);
-			echo json_encode($list);
+
+			if($list != false){
+                return json_encode($list);
+            } else{
+                return $list;
+            }
 		}
 		public function updateSeat($macb,$soluong)
 		{
 			if(empty($macb))
 			{
-				echo "Xin nhập mã chuyến bay";
-				return;
+				return "Xin nhập mã chuyến bay";
+
 			}
 			if($soluong<0)
 			{
-				echo "Số lương không được âm";
-				return;
+				return "Số lương không được âm";
+
 			}
 			$this->model->updateSeat($macb,$soluong);
 		}

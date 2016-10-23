@@ -27,6 +27,7 @@
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false
 			}
 		}
 		public function createFlightDetail($params)
@@ -44,11 +45,12 @@
 				$a->bindParam("mucgia",$params["mucgia"],PDO::PARAM_STR);
 				$a->execute();
 				$this->con->Disconnection();
-				echo "Thêm thành công";
+				return true;
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false;
 			}
 			
 		}

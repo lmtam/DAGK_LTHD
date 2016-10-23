@@ -26,6 +26,7 @@
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false;
 			}
 		}
 		public function createPassenger($params)
@@ -40,10 +41,12 @@
 				$a->bindParam("ten",$params["ten"],PDO::PARAM_STR);
 				$a->excute();
 				$this->Disconnection();
+				return true;
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false;
 			}
 		}
 	}

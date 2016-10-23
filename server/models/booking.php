@@ -36,11 +36,12 @@
 				$a->bindParam(":trangthai",0);
 				$a->execute();
 				$this->Disconnection();
-				
+				return true;
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false;
 			}
 		}
 		public getBookingInfo()
@@ -57,6 +58,7 @@
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+			    return false;
 			}
 		}
 		public function updateBooking($madc,$para_name,$para_value)
@@ -69,10 +71,12 @@
 				$a->bindParam("paravalue",$para_value);
 				$a->execute();
 				$this->Disconnection();
+				return true;
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
+				return false;
 			}
 		}
 

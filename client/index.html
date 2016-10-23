@@ -10,6 +10,7 @@
     <link href="Plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="Plugins/jquery-sweet-alert/sweetalert.css" rel="stylesheet" />
+    <link rel="icon" href="Image/airplane.png"/>
     <style type="text/css">
         body {
             background: url(Image/maybay.jpg);
@@ -81,6 +82,24 @@
         <div class="container" style="">
             <div id="divTimKiem" class="row" style="padding: 0px 15px;">
                 <div class="col-md-6" style="background: #E4D2E3; padding: 10px; min-height: 263px">                   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="radio">
+                                <label><input type="radio" name="rbChuyenBay" id="rbKhuHoi" />Khứ hồi</label>
+                                <label  style="padding-right: 20px"><input type="radio" name="rbChuyenBay" id="rbMotChieu" checked="checked"/>Một chiều</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div style="padding-top: 8px">Hạng vé</div>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control">
+                                <option value="Y">Thường</option>
+                                <option value="C">VIP</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="row" style="padding-top: 10px">
                         <div class="col-md-2">
                             <div style="padding-top: 8px">Điểm đi</div>
@@ -107,44 +126,52 @@
                             <div style="padding-top: 8px">Ngày đi</div>
                         </div>
                         <div class="col-md-4">
-                            <div class='input-group date' id='dtpdate'>
-                                <input type='text' id="txtdate" class="form-control" />
+                            <div class='input-group date' id='dtpNgayDi'>
+                                <input type='text' id="txtNgayDi" class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div style="padding-top: 8px">Hạng vé</div>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-control">
-                                <option value="Y">Thường</option>
-                                <option value="C">VIP</option>
-                            </select>
+                        <div id="divNgayVe" class="hidden">
+                            <div class="col-md-2">
+                                <div style="padding-top: 8px">Ngày về</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class='input-group date' id='dtpNgayVe'>
+                                    <input type='text' id="txtNgayVe" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row" style="padding-top: 10px" id="divCustomer">
                         <div class="col-md-4">
                             <div>Người lớn (>=12T)</div>
-                            <select class="form-control">
+                            <select class="form-control" id="cboNguoiLon">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <div>Trẻ em (2-11 Tuổi)</div>
+                            <select class="form-control" id="cboTreEm">
+                                <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <div>Trẻ em (2-11 Tuổi)</div>
-                            <select class="form-control">
-                                <option>0</option>
-                                <option>1</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
                            <div>Em bé (< 23 Tháng)</div>
-                            <select class="form-control">
+                            <select class="form-control" id="cboEmBe">
                                 <option>0</option>
                                 <option>1</option>
+                                <option>2</option>
                             </select>
                         </div>
                     </div>
@@ -161,20 +188,38 @@
                 </div>
             </div>
 
-            <div class="row" style="padding: 20px 15px;">
+            <div class="row" style="padding: 0px 15px;">
                 <div id="divDatCho" class="col-md-12 hidden" style="background: white;padding-bottom: 20px">
-                    <h3 style="font-weight: bold">Chọn chuyến bay</h3>
-                    <table id="tblDanhSachChuyenBay">
-                        <thead>
-                            <tr>
-                                <th data-width="25%" data-field="MaCB">Mã chuyến bay</th>
-                                <th data-width="25%" data-field="GioDi">Giờ đi</th>
-                                <th data-width="25%" data-field="GioDen">Giờ đến</th>
-                                <th data-width="25%" data-field="Gia">Giá</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <div id="divChoNgoi" class="col-md-12 hidden" style="background: white; padding: 20px">
+                    <div>
+                        <h3 style="font-weight: bold">Chọn chuyến bay đi</h3>
+                        <table id="tblDanhSachChuyenBayDi">
+                            <thead>
+                                <tr>
+                                    <th data-width="25%" data-field="MaCB">Mã chuyến bay</th>
+                                    <th data-width="25%" data-field="GioDi">Giờ đi</th>
+                                    <th data-width="25%" data-field="GioDen">Giờ đến</th>
+                                    <th data-width="25%" data-field="Gia">Giá</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div><em>Đã chọn chuyến bay: </em><span style="color: red" id="divTenChuyenBayDi"></span></div>
+                    </div>    
+                    <div id="divChuyenBayVe" class="hidden">
+                        <h3 style="font-weight: bold">Chọn chuyến bay về</h3>
+                        <table id="tblDanhSachChuyenBayVe">
+                            <thead>
+                                <tr>
+                                    <th data-width="25%" data-field="MaCB">Mã chuyến bay</th>
+                                    <th data-width="25%" data-field="GioDi">Giờ đi</th>
+                                    <th data-width="25%" data-field="GioDen">Giờ đến</th>
+                                    <th data-width="25%" data-field="Gia">Giá</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div><em>Đã chọn chuyến bay: </em><span style="color: red" id="divTenChuyenBayVe"></span></div>
+                    </div>
+
+                    <div id="divChoNgoi" class="hidden" style="background: white">
                         <h3 style="font-weight: bold">Đặt chỗ</h3>
                         <div class="row" >
                             <div class="col-md-1">
@@ -208,9 +253,18 @@
                     </div>
                 </div>
             
-                <div id="divThongTinKH" class="col-md-12 hidden" style="background: white; padding: 20px">
+                <div id="divThongTinKH" class="col-md-12 hidden" style="background: white; padding: 10px 10px">
                     <h3 style="font-weight: bold">Thông tin hành khách</h3>
                     <div class="row" >
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                           <select class="form-control">
+                               <option value="male">Ông</option>
+                               <option value="female">Bà</option>
+                           </select>
+                        </div> 
                         <div class="col-md-1">
                             <div style="padding-top: 8px">Họ</div>
                         </div>
@@ -222,27 +276,13 @@
                         </div>
                         <div class="col-md-2">
                            <input class="form-control" type="text"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Địa chỉ</div>
-                        </div>
-                        <div class="col-md-5">
-                           <input class="form-control" type="text"/>
-                        </div>                        
+                        </div> 
+                                                                      
                     </div>
                     <div class="row" style="padding-top: 10px">
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">SĐT</div>
-                        </div>
-                        <div class="col-md-2">
-                           <input class="form-control" type="text"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Email</div>
-                        </div>
-                        <div class="col-md-2">
-                           <input class="form-control" type="text"/>
-                        </div>
+                        <div class="col-md-12">
+                           <div><em>Tiền vé: </em><span style="color: red" id="divTienVe"></span></div>
+                        </div> 
                     </div>
                     <div style="padding-top: 10px;text-align: center">
                         <button class="btn btn-lg btn-success" onclick="btnHoanTat()">
@@ -250,6 +290,7 @@
                         </button>
                     </div>                    
                 </div>
+
                 <div id="divHoanTat" class="hidden text-center">
                     <h2>Đăng kí thành công</h2>
                 </div>
@@ -268,24 +309,38 @@
     <script src="Plugins/bootstrap-table/bootstrap-table.js"></script>
     <script src="Plugins/jquery-sweet-alert/sweetalert.min.js"></script>
     <script type="text/javascript">
-        $('#dtpdate').datetimepicker({
+        //bien toan cuc
+        var strVeVIP = 500000;
+        var strVeThuong = 100000;
+
+        $('#dtpNgayDi').datetimepicker({
             format: 'DD/MM/YYYY',
             defaultDate: new Date()
         });
 
-        $("table[id$=tblDanhSachChuyenBay]").bootstrapTable({
-            classes: 'table table-hover',
-            data: []
-        });
+        $('#dtpNgayVe').datetimepicker({
+            format: 'DD/MM/YYYY',
+            defaultDate: new Date()
+        });       
 
         var data = [
             { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
             { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
             { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
             { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
-        ];        
+        ];
 
-        function ShowTimKiem() {
+        $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable({
+            classes: 'table table-hover',
+            data: data
+        });
+
+        $("table[id$=tblDanhSachChuyenBayVe]").bootstrapTable({
+            classes: 'table table-hover',
+            data: data
+        });
+
+        function ShowTimKiem() {            
             $('#divTimKiem').removeClass("hidden");
             $('#divDatCho').addClass("hidden");
             $('#divThongTinKH').addClass("hidden");
@@ -293,6 +348,23 @@
         };
 
         function ShowDatCho() {
+            var strNguoiLon = $('#cboNguoiLon :selected').text();
+            var strTreEm = $('#cboTreEm :selected').text();
+            var strEmBe = $('#cboEmBe :selected').text();
+            var strNgayDi = $('#txtNgayDi').val().split("/");
+            var strNgayVe = $('#txtNgayVe').val().split("/");
+            
+            if (parseInt(strNguoiLon) + parseInt(strTreEm) + parseInt(strEmBe) > 6) {
+                sweetAlert("Chỉ đặt vé tối đa là 6 người", "", "error");
+                return;
+            }
+            
+            //if (parseInt(strNgayVe[2]) < parseInt(strNgayDi[2])
+            //    || parseInt(strNgayVe[1]) < parseInt(strNgayDi[1])
+            //    || parseInt(strNgayVe[0]) < parseInt(strNgayDi[0])) {
+            //    sweetAlert("Ngày về phải nhỏ hơn ngày đi", "", "error");
+            //    return;
+            //}
             $('#divTimKiem').addClass("hidden");
             $('#divDatCho').removeClass("hidden");
             $('#divThongTinKH').addClass("hidden");
@@ -301,9 +373,18 @@
             $("table[id$=tblDanhSachChuyenBay]").bootstrapTable('load', data);
         };
 
-        $('table[id$=tblDanhSachChuyenBay]').on('click-row.bs.table', function (row, $element, field) {
+        //var strSelected_CB = 0
+        $('table[id$=tblDanhSachChuyenBayDi]').on('click-row.bs.table', function (row, $element, field) {
             $('#divChoNgoi').removeClass("hidden");
+            $('#divTenChuyenBayDi').text($element["MaCB"]);
+            //strSelected_CB = 1;
         });
+
+        //$('table[id$=tblDanhSachChuyenBayVe]').on('click-row.bs.table', function (row, $element, field) {
+        //    $('#divChoNgoi').removeClass("hidden");
+        //    $('#divTenChuyenBayVe').text($element["MaCB"]);
+        //    strSelected_CB = 2;
+        //});
 
         function ShowThongTinKH() {
             $('#divTimKiem').addClass("hidden");
@@ -321,6 +402,16 @@
             $('#divColorHoanTat').css("color", "red");
             sweetAlert("Đặt vé thành công", "", "success");
         };
+
+        $("input[name='rbChuyenBay']").click(function () {
+            if ($("#rbKhuHoi").is(":checked")) {
+                $('#divNgayVe').removeClass('hidden');
+            }
+            else {
+                $('#divNgayVe').addClass('hidden');
+            }
+        });
+
     </script>
 </body>
 </html>

@@ -7,30 +7,22 @@
 		{
 			$this->model=new Booking_Model();
 		}
-		public function createBooking($madc)
+		public function createBooking($tongtien)
 		{
-			return $this->model->createBooking($madc);
+			return $this->model->createBooking($tongtien);
 		}
 		public function getBookingInfo()
 		{
 			$list =  $this->model->getBookingInfo();
-			if($list != false){
-                return json_encode($list);
-            } else{
-                return $list;
+			if(!$list)
+			{
+				return $list;
+                
+            } 
+			else
+			{
+				return json_encode($list);   
             }
-		}
-		public function updateBooking($madc,$para_name,$para_value)
-		{
-			if(empty($para_name))
-			{
-				return;
-			}
-			if(empty($para_value))
-			{
-				return;
-			}
-			return $this->model->updateBooking($madc,$para_name,$para_value);
 		}
 		
 	}

@@ -2,7 +2,7 @@
 	require_once("databases/dbconnect.php");
 	class Passenger_Model
 	{
-		private $con
+		private $con;
 		public function __construct()
 		{
 			$temp=new dbConnection();
@@ -35,10 +35,10 @@
 			try
 			{
 				$a=$this->con->prepare($sql);
-				$a->bindParam("madc",$params["madc"],PDO::PARAM_STR);
-				$a->bindParam("danhxung",$params["danhxung"],PDO::PARAM_STR);
-				$a->bindParam("ho",$params["ho"],PDO::PARAM_STR);
-				$a->bindParam("ten",$params["ten"],PDO::PARAM_STR);
+				$a->bindParam("madc",$_SESSION["madc"]);
+				$a->bindParam("danhxung",$params["danhxung"]);
+				$a->bindParam("ho",$params["ho"]);
+				$a->bindParam("ten",$params["ten"]);
 				$a->excute();
 				$this->Disconnection();
 				return true;

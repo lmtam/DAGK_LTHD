@@ -1,4 +1,5 @@
 <?php
+	//session_start();
 	require_once("databases/dbconnect.php");
 	class Booking_Model
 	{
@@ -12,30 +13,26 @@
 		{
 			$this->con=null;
 		}
-		public function generateUniqueID()
-		{
-			$str=implode(range(0,9));
-			$shuffle=str_shuffle($char);
-			return substr($shuffle,0,6);
-		}
-		public function createBooking($madc)
+
+		public function createBooking($tongtien)
 		{
 			
 			$sql="Insert into datcho values(:madc,:thoigian,:tongtien,:trangthai)";
 			try
 			{
-				$madc=$this->generateUniqueID();
+				//$madc=$this->generateUniqueID();
 				date_default_timezone_set("Asia/Bangkok");
 				$thoigian=date("Y-m-d");
 				
 				$a=$this->con->prepare($sql);
 				
-				$a->bindParam(":madc",$madc);
+				$a->bindParam(":madc",$_SESSION["madc"]);
 				$a->bindParam(":thoigian",$thoigian);
-				$a->bindParam(":tongtien",0);
-				$a->bindParam(":trangthai",0);
+				$a->bindParam(":tongtien",$tongtien);
+				$a->bindParam(":trangthai",1);
 				$a->execute();
 				$this->Disconnection();
+				session_destroy();
 				return true;
 			}
 			catch(Exception $e)
@@ -44,7 +41,7 @@
 				return false;
 			}
 		}
-		public getBookingInfo()
+		public function getBookingInfo()
 		{
 			$sql="SELECT * FROM datcho";
 			try
@@ -61,24 +58,7 @@
 			    return false;
 			}
 		}
-		public function updateBooking($madc,$para_name,$para_value)
-		{
-			$sql="UPDATE datcho SET :paraname=:paravalue WHERE Madatcho=:madc";
-			try
-			{
-				$a=$this->con->prepare($sql);
-				$a->bindParam("paraname",$para_name);
-				$a->bindParam("paravalue",$para_value);
-				$a->execute();
-				$this->Disconnection();
-				return true;
-			}
-			catch(Exception $e)
-			{
-				echo "Caught Exception: ".$e->getMessage();
-				return false;
-			}
-		}
+
 
 	}
 ?>

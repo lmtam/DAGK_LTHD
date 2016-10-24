@@ -10,17 +10,19 @@
 		public function getList()
 		{
 			$list=$this->model->getList();
-			if($list != false){
-			    return json_encode($list);
+			if(!$list)
+			{
+				return $list;
+			    
 			}
-			else{
-			    return $list;
+			else
+			{
+				return json_encode($list);
 			}
 		}
-		public function createPassenger($madc,$danhxung,$ho,$ten)
+		public function createPassenger($danhxung,$ho,$ten)
 		{
 			$params=array(
-			"madc"=>$madc,
 			"danhxung"=>$danhxung,
 			"ho"=>$ho,
 			"ten"=>$ten

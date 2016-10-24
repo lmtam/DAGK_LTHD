@@ -20,14 +20,14 @@
 				$a=$this->con->prepare($sql);
 				$a->execute();
 				$list=$a->fetchAll(PDO::FETCH_BOTH);
-				$this->con->Disconnection();
+				$this->Disconnection();
 				return $list;
 				
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
-				return false
+				return false;
 			}
 		}
 		public function createFlightDetail($params)
@@ -38,13 +38,13 @@
 				date_default_timezone_set("Asia/Bangkok");
 				$ngay=date("Y-m-d");
 				$a=$this->con->prepare($sql);
-				$a->bindParam("madc",$params["madc"],PDO::PARAM_STR);
-				$a->bindParam("macb",$params["macb"],PDO::PARAM_STR);
+				$a->bindParam("madc",$_SESSION["madc"]);
+				$a->bindParam("macb",$params["macb"]);
 				$a->bindParam("ngay",$ngay);
-				$a->bindParam("hang",$params["hang"],PDO::PARAM_STR);
-				$a->bindParam("mucgia",$params["mucgia"],PDO::PARAM_STR);
+				$a->bindParam("hang",$params["hang"]);
+				$a->bindParam("mucgia",$params["mucgia"]);
 				$a->execute();
-				$this->con->Disconnection();
+				$this->Disconnection();
 				return true;
 			}
 			catch(Exception $e)

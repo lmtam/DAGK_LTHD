@@ -8,10 +8,9 @@
 		{
 			$this->model=new FlightDetail_Model();
 		}
-		public function createFlightDetail($madc,$macb,$hang,$mucgia)
+		public function createFlightDetail($macb,$hang,$mucgia)
 		{
 			$params=array(
-			"madc"=>$madc,
 			"macb"=>$macb,
 			"hang"=>$hang,
 			"mucgia"=>$mucgia
@@ -22,11 +21,14 @@
 		public function getList()
 		{
 			$list=$this->model->getList();
-			if($list != false){
-			    return json_encode($list);
+			if(!$list)
+			{
+				return $list;
+			    
 			}
-			else{
-			    return $list;
+			else
+			{
+			    return json_encode($list);
 			}
 		}
 		

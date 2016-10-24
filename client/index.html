@@ -93,7 +93,7 @@
                             <div style="padding-top: 8px">Hạng vé</div>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control">
+                            <select class="form-control" id="cboHangVe">
                                 <option value="Y">Thường</option>
                                 <option value="C">VIP</option>
                             </select>
@@ -105,18 +105,16 @@
                             <div style="padding-top: 8px">Điểm đi</div>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control">
-                                <option>TPHCM</option>
-                                <option>Hà Nội</option>
+                            <select class="form-control" id="cboDiemDi">
+
                             </select>
                         </div>
                         <div class="col-md-2">
                             <div style="padding-top: 8px">Điểm đến</div>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control">
-                                <option>Hà Nội</option>
-                                <option>TPHCM</option>
+                            <select class="form-control" id="cboDiemDen">
+
                             </select>
                         </div>
                     </div>
@@ -155,7 +153,6 @@
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                                <option value="4">4</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -195,14 +192,20 @@
                         <table id="tblDanhSachChuyenBayDi">
                             <thead>
                                 <tr>
-                                    <th data-width="25%" data-field="Machuyenbay">Mã chuyến bay</th>
-                                    <th data-width="25%" data-field="Madatcho">Giờ đi</th>
-                                    <th data-width="25%" data-field="Mucgia">Giờ đến</th>
-                                    <th data-width="25%" data-field="Ngay">Giá</th>
+
+                                    <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
+                                    <th data-width="20%" data-field="Ngay">Ngày</th>
+                                    <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
+                                    <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
+                                    <th data-width="20%" data-field="Hang">Hạng vé</th>
+                                    <th data-width="20%" data-field="Giaban">Giá bán</th>
                                 </tr>
                             </thead>
                         </table>
-                        <div><em>Đã chọn chuyến bay: </em><span style="color: red" id="divTenChuyenBayDi"></span></div>
+                        <div>
+                            <i>Đã chọn chuyến bay: </i><span style="color: red" id="divTenChuyenBayDi"></span>
+                            <i>, giá bán: </i><span style="color: red" id="divGiaBan"></span>
+                        </div>
                     </div>    
                     <div id="divChuyenBayVe" class="hidden">
                         <h3 style="font-weight: bold">Chọn chuyến bay về</h3>
@@ -220,31 +223,37 @@
                     </div>
 
                     <div id="divChoNgoi" class="hidden" style="background: white">
-                        <h3 style="font-weight: bold">Đặt chỗ</h3>
+                        <h3 style="font-weight: bold">Thông tin liên hệ</h3>
                         <div class="row" >
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Dãy ghế</div>
+                            <div class="col-md-1" style="padding-right: 0px;">
+                                <div style="padding-top: 8px">Danh xưng</div>
                             </div>
-                            <div class="col-md-2">  
+                            <div class="col-md-2" >
                                 <select class="form-control">
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
-                                    <option>D</option>
+                                    <option value="male">Ông</option>
+                                    <option value="female">Bà</option>
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <div style="padding-top: 8px">Số thứ tự</div>
+                                <div style="padding-top: 8px">Họ tên</div>
                             </div>
                             <div class="col-md-2">
-                               <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
-                            </div>                        
+                                <input class="form-control" type="text" id="txtHoTen"/>
+                            </div>
+                            <div class="col-md-1">
+                                <div style="padding-top: 8px">SĐT</div>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="text" id="txtSDT"/>
+                            </div>
+                            <div class="col-md-1">
+                                <div style="padding-top: 8px">Email</div>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="text" id="txtEmail"/>
+                            </div>
                         </div>
+
                         <div style="padding-top: 10px;text-align: center">
                             <button class="btn btn-lg btn-warning" onclick="ShowThongTinKH()">
                                 Tiếp tục
@@ -255,12 +264,14 @@
             
                 <div id="divThongTinKH" class="col-md-12 hidden" style="background: white; padding: 10px 10px">
                     <h3 style="font-weight: bold">Thông tin hành khách</h3>
-                    <div class="row" >
+                    <!--hanh khach 1-->
+                    <div class="row"  style="padding-top: 10px" id="divThongtinHanhKhach1">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 1</i>
                         <div class="col-md-1" style="padding-right: 0px;">
                             <div style="padding-top: 8px">Danh xưng</div>
                         </div>
                         <div class="col-md-2" >
-                           <select class="form-control">
+                           <select class="form-control" id="cboDanhXungHanhKhach1">
                                <option value="male">Ông</option>
                                <option value="female">Bà</option>
                            </select>
@@ -269,16 +280,133 @@
                             <div style="padding-top: 8px">Họ</div>
                         </div>
                         <div class="col-md-2">  
-                            <input class="form-control" type="text"/>
+                            <input class="form-control" type="text" id="txtHoHanhKhach1"/>
                         </div>
                         <div class="col-md-1">
                             <div style="padding-top: 8px">Tên</div>
                         </div>
                         <div class="col-md-2">
-                           <input class="form-control" type="text"/>
-                        </div> 
-                                                                      
+                           <input class="form-control" type="text" id="txtTenHanhKhach1"/>
+                        </div>
+                        <!--<div class="col-md-1">-->
+                            <!--<div style="padding-top: 8px">Mã ghế</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-2">-->
+                            <!--<select class="form-control" type="text" id="cboMaGhe">-->
+                                <!--<option>A1</option>-->
+                                <!--<option>A2</option>-->
+                                <!--<option>A3</option>-->
+                                <!--<option>B1</option>-->
+                                <!--<option>B2</option>-->
+                                <!--<option>B3</option>-->
+                                <!--<option>C1</option>-->
+                                <!--<option>C2</option>-->
+                                <!--<option>C3</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
                     </div>
+                    <!--hanh khach 2-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach2">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 2</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach2">
+                                <option value="male">Ông</option>
+                                <option value="female">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach2"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach2"/>
+                        </div>
+
+                    </div>
+                    <!--hanh khach 3-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach3">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 3</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach3">
+                                <option value="male">Ông</option>
+                                <option value="female">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach3"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach3"/>
+                        </div>
+                    </div>
+                    <!--hanh khach 4-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach4">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 4</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach4">
+                                <option value="male">Ông</option>
+                                <option value="female">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach4"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach4"/>
+                        </div>
+                    </div>
+                    <!--hanh khach 5-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach5">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 5</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach5">
+                                <option value="male">Ông</option>
+                                <option value="female">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach5"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach5"/>
+                        </div>
+                    </div>
+
                     <div class="row" style="padding-top: 10px">
                         <div class="col-md-12">
                            <div><em>Tiền vé: </em><span style="color: red" id="divTienVe"></span></div>
@@ -309,138 +437,6 @@
     <script src="Plugins/bootstrap-table/bootstrap-table.js"></script>
     <script src="Plugins/jquery-sweet-alert/sweetalert.min.js"></script>
     <script src="index.js"></script>
-    <script type="text/javascript">
-        //bien toan cuc
-        var strVeVIP = 500000;
-        var strVeThuong = 100000;
 
-        $('#dtpNgayDi').datetimepicker({
-            format: 'DD/MM/YYYY',
-            defaultDate: new Date()
-        });
-
-        $('#dtpNgayVe').datetimepicker({
-            format: 'DD/MM/YYYY',
-            defaultDate: new Date()
-        });       
-
-        var data = [
-            { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
-            { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
-            { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
-            { "MaCB": "HN", "GioDi": "12:20", "GioDen": "14:20", "Gia": "1000000" },
-        ];
-
-        $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable({
-            classes: 'table table-hover',
-            //data: data
-        });
-
-        $("table[id$=tblDanhSachChuyenBayVe]").bootstrapTable({
-            classes: 'table table-hover',
-            //data: data
-        });
-
-        function ShowTimKiem() {            
-            $('#divTimKiem').removeClass("hidden");
-            $('#divDatCho').addClass("hidden");
-            $('#divThongTinKH').addClass("hidden");
-            $('#divHoanTat').addClass("hidden");
-        };
-
-        function ShowDatCho() {
-            var strNguoiLon = $('#cboNguoiLon :selected').text();
-            var strTreEm = $('#cboTreEm :selected').text();
-            var strEmBe = $('#cboEmBe :selected').text();
-            var strNgayDi = $('#txtNgayDi').val().split("/");
-            var strNgayVe = $('#txtNgayVe').val().split("/");
-
-            if (parseInt(strNguoiLon) + parseInt(strTreEm) + parseInt(strEmBe) > 6) {
-                sweetAlert("Chỉ đặt vé tối đa là 6 người", "", "error");
-                return;
-            }
-            
-            //if (parseInt(strNgayVe[2]) < parseInt(strNgayDi[2])
-            //    || parseInt(strNgayVe[1]) < parseInt(strNgayDi[1])
-            //    || parseInt(strNgayVe[0]) < parseInt(strNgayDi[0])) {
-            //    sweetAlert("Ngày về phải nhỏ hơn ngày đi", "", "error");
-            //    return;
-            //}
-            $('#divTimKiem').addClass("hidden");
-            $('#divDatCho').removeClass("hidden");
-            $('#divThongTinKH').addClass("hidden");
-            $('#divHoanTat').addClass("hidden");
-            $('#divColorDatCho').css("color", "red");
-            $("table[id$=tblDanhSachChuyenBay]").bootstrapTable('load', data);
-            var rootURL = "../server/flight";
-//            alert("12345k6");
-            //console.log( JSON.stringify(obj));
-            //var abc = JSON.stringify(obj);
-            //console.log( JSON.stringify({abc : abc}));
-            $.ajax({
-                type: "GET",
-                url: rootURL,
-                dataType: 'json',
-                data: '',
-                success:function (respones) {
-
-                    console.log(respones);
-                    $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable('load', respones);
-                }
-            });
-        };
-
-        //var strSelected_CB = 0
-        $('table[id$=tblDanhSachChuyenBayDi]').on('click-row.bs.table', function (row, $element, field) {
-            $('#divChoNgoi').removeClass("hidden");
-            $('#divTenChuyenBayDi').text($element["MaCB"]);
-            //strSelected_CB = 1;
-        });
-
-        //$('table[id$=tblDanhSachChuyenBayVe]').on('click-row.bs.table', function (row, $element, field) {
-        //    $('#divChoNgoi').removeClass("hidden");
-        //    $('#divTenChuyenBayVe').text($element["MaCB"]);
-        //    strSelected_CB = 2;
-        //});
-
-        function ShowThongTinKH() {
-            $('#divTimKiem').addClass("hidden");
-            $('#divDatCho').addClass("hidden");
-            $('#divThongTinKH').removeClass("hidden");
-            $('#divHoanTat').addClass("hidden");
-            $('#divColorTTKH').css("color", "red");
-        };
-
-        function btnHoanTat() {            
-            $('#divTimKiem').addClass("hidden");
-            $('#divDatCho').addClass("hidden");
-            $('#divThongTinKH').addClass("hidden");
-            $('#divHoanTat').removeClass("hidden");
-            $('#divColorHoanTat').css("color", "red");
-            sweetAlert("Đặt vé thành công", "", "success");
-        };
-
-        $("input[name='rbChuyenBay']").click(function () {
-            if ($("#rbKhuHoi").is(":checked")) {
-                $('#divNgayVe').removeClass('hidden');
-            }
-            else {
-                $('#divNgayVe').addClass('hidden');
-            }
-        });
-
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: '../server/flight',
-                dataType: 'json',
-                data: '',
-                success:function (respones) {
-
-                    console.log(respones);
-                }
-            });
-        });
-    </script>
 </body>
 </html>

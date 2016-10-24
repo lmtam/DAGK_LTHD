@@ -29,14 +29,14 @@
 	});
 	$app->post("/booking",function($request,$response,$args)
 	{
-		$tongtien=$request["tongtien"];
-		
+		$data=$request->getParsedBody();
+
 		$con=new Booking_Controller();
 		
 		
-		$result=$con->createBooking($tongtien);
+		$result=$con->createBooking($data['tongtien'],$data['danhxung'],$data['hoten'],$data['sdt'],$data['email']);
 		
-		echo $result;
+		//echo $result;
 	});
 	$app->put("/flights/{macb}/{hang}/{muc}",function($request,$response,$args)
 	{
@@ -81,14 +81,15 @@
 		$result=$con->createPassenger($danhxung,$ho,$ten);
 		echo $result;
 	});
-	$app->get("/flights/{noidi}/{noiden}/{ngaydi}/{soluong}",function($request,$response,$args)
+	$app->get("/flights/{noidi}/{noiden}/{ngaydi}/{soluong}/{hang}",function($request,$response,$args)
 	{
 		$noidi=$args["noidi"];
 		$noiden=$args["noiden"];
 		$ngaydi=$args["ngaydi"];
 		$soluong=$args["soluong"];
+		$hang=$args["hang"];
 		$con=new Flight_Controller();
-		$result=$con->findFlightWithCondition($noidi,$noiden,$ngaydi,$soluong);
+		$result=$con->findFlightWithCondition($noidi,$noiden,$ngaydi,$soluong,$hang);
 		echo $result;
 	});
 	$app->run();

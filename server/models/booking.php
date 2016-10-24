@@ -14,22 +14,27 @@
 			$this->con=null;
 		}
 
-		public function createBooking($tongtien)
+		public function createBooking($tongtien,$danhxung,$hoten,$sdt,$email)
 		{
 			
-			$sql="Insert into datcho values(:madc,:thoigian,:tongtien,:trangthai)";
+			$sql="INSERT INTO datcho VALUES(:madc,:thoigian,:tongtien,:trangthai,:danhxung,:hoten,:sdt,:email)";
+			echo $sql;
 			try
 			{
 				//$madc=$this->generateUniqueID();
 				date_default_timezone_set("Asia/Bangkok");
-				$thoigian=date("Y-m-d");
+				$thoigian=date("Y-m-d H-i-s");
 				
 				$a=$this->con->prepare($sql);
 				
-				$a->bindParam(":madc",$_SESSION["madc"]);
-				$a->bindParam(":thoigian",$thoigian);
-				$a->bindParam(":tongtien",$tongtien);
-				$a->bindParam(":trangthai",1);
+				$a->bindParam("madc",$_SESSION["madc"],PDO::PARAM_STR);
+				$a->bindParam("thoigian",$thoigian);
+				$a->bindParam("tongtien",$tongtien);
+				$a->bindParam("trangthai",$x = 1,PDO::PARAM_STR);
+				$a->bindParam("danhxung",$danhxung);
+				$a->bindParam("hoten",$hoten);
+				$a->bindParam("sdt",$sdt);
+				$a->bindParam("email",$email);
 				$a->execute();
 				$this->Disconnection();
 				session_destroy();

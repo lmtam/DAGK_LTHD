@@ -31,7 +31,7 @@
 		}
 		public function getDepartureAirportList()
 		{
-			$sql="SELECT DISTINCT Noidi  FROM chuyenbay";
+			$sql="SELECT DISTINCT CB.Noidi, SB.tensanbay FROM chuyenbay CB join sanbay SB on CB.noidi = SB.Masanbay";
 			try
 			{
 				$a=$this->con->prepare($sql);
@@ -49,7 +49,9 @@
 		}
 		public function getArrivalAirportList($noidi)
 		{
-			$sql="SELECT DISTINCT Noiden FROM chuyenbay WHERE Noidi=:noidi";
+            $sql="SELECT DISTINCT CB.machuyenbay,CB.Noiden, SB.tensanbay FROM chuyenbay CB join sanbay SB on CB.Noiden = SB.masanbay where CB.Noidi=:noidi ";
+
+//			$sql="SELECT DISTINCT Noiden FROM chuyenbay WHERE Noidi=:noidi";
 			try
 			{
 				$a=$this->con->prepare($sql);
@@ -67,7 +69,7 @@
 		}
 		public function findFlightWithCondition($params)
 		{
-			$sql="SELECT * FROM chuyenbay WHERE Noidi=:noidi AND Noiden=:noiden  AND Soghe>=:soluongkhach AND Ngay=:ngay";
+			$sql="SELECT * FROM chuyenbay WHERE Noidi=:noidi AND Noiden=:noiden  AND Soluongghe>=:soluongkhach AND Ngay=:ngay AND Hang =:hang";
 			try
 			{
 				$a=$this->con->prepare($sql);
@@ -75,6 +77,7 @@
 				$a->bindParam("noiden",$params["noiden"]);
 				$a->bindParam("ngay",$params["ngay"]);
 				$a->bindParam("soluongkhach",$params["soluongkhach"]);
+				$a->bindParam("hang",$params["hang"]);
 				$a->execute();
 				$list=$a->fetchAll(PDO::FETCH_BOTH);
 				$this->Disconnection();

@@ -7,9 +7,10 @@
 		{
 			$this->model=new Booking_Model();
 		}
-		public function createBooking($tongtien)
+		public function createBooking($tongtien,$danhxung,$hoten,$sdt,$email)
 		{
-			return $this->model->createBooking($tongtien);
+
+			return $this->model->createBooking($tongtien,$danhxung,$hoten,$sdt,$email);
 		}
 		public function getBookingInfo()
 		{

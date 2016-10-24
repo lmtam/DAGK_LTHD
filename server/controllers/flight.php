@@ -97,35 +97,17 @@
 			}
 			
 		}
-		public function findFlightWithCondition($noidi,$noiden,$ngaydi,$soluongkhach)
+		public function findFlightWithCondition($noidi,$noiden,$ngaydi,$soluongkhach,$hang)
 		{
-			if(empty($noidi))
-			{
-				return "Xin nhập Sân bay đi";
-			}
-			elseif(empty($noiden))
-			{
-				return "Xin nhập Sân bay đến";
-			}
-			elseif(empty($ngaydi))
-			{
-				return "Xin nhập ngày";
-			}
-			elseif($soluongkhach<=0)
-			{
-				return "Số lượng hành khách phải lớn hơn 0";
-			}
-			else
-			{
-				$params=array(
-				"noidi"=>$noidi,
-				"noiden"=>$noiden,
-				"ngay"=>$ngaydi,
-				"soluongkhach"=>$soluongkhach
-				);
-				$list=$this->model->findFlightWithCondition($params);
-				return json_encode($list);
-			}
+			$params=array(
+            "noidi"=>$noidi,
+            "noiden"=>$noiden,
+            "ngay"=>$ngaydi,
+            "soluongkhach"=>$soluongkhach,
+            "hang"=>$hang
+            );
+            $list=$this->model->findFlightWithCondition($params);
+            return json_encode($list);
 		}
 	}
 ?>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -195,10 +195,10 @@
                         <table id="tblDanhSachChuyenBayDi">
                             <thead>
                                 <tr>
-                                    <th data-width="25%" data-field="MaCB">Mã chuyến bay</th>
-                                    <th data-width="25%" data-field="GioDi">Giờ đi</th>
-                                    <th data-width="25%" data-field="GioDen">Giờ đến</th>
-                                    <th data-width="25%" data-field="Gia">Giá</th>
+                                    <th data-width="25%" data-field="Machuyenbay">Mã chuyến bay</th>
+                                    <th data-width="25%" data-field="Madatcho">Giờ đi</th>
+                                    <th data-width="25%" data-field="Mucgia">Giờ đến</th>
+                                    <th data-width="25%" data-field="Ngay">Giá</th>
                                 </tr>
                             </thead>
                         </table>
@@ -308,6 +308,7 @@
     <script src="Plugins/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="Plugins/bootstrap-table/bootstrap-table.js"></script>
     <script src="Plugins/jquery-sweet-alert/sweetalert.min.js"></script>
+    <script src="index.js"></script>
     <script type="text/javascript">
         //bien toan cuc
         var strVeVIP = 500000;
@@ -332,12 +333,12 @@
 
         $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable({
             classes: 'table table-hover',
-            data: data
+            //data: data
         });
 
         $("table[id$=tblDanhSachChuyenBayVe]").bootstrapTable({
             classes: 'table table-hover',
-            data: data
+            //data: data
         });
 
         function ShowTimKiem() {            
@@ -353,7 +354,7 @@
             var strEmBe = $('#cboEmBe :selected').text();
             var strNgayDi = $('#txtNgayDi').val().split("/");
             var strNgayVe = $('#txtNgayVe').val().split("/");
-            
+
             if (parseInt(strNguoiLon) + parseInt(strTreEm) + parseInt(strEmBe) > 6) {
                 sweetAlert("Chỉ đặt vé tối đa là 6 người", "", "error");
                 return;
@@ -371,6 +372,22 @@
             $('#divHoanTat').addClass("hidden");
             $('#divColorDatCho').css("color", "red");
             $("table[id$=tblDanhSachChuyenBay]").bootstrapTable('load', data);
+            var rootURL = "../server/flight";
+//            alert("12345k6");
+            //console.log( JSON.stringify(obj));
+            //var abc = JSON.stringify(obj);
+            //console.log( JSON.stringify({abc : abc}));
+            $.ajax({
+                type: "GET",
+                url: rootURL,
+                dataType: 'json',
+                data: '',
+                success:function (respones) {
+
+                    console.log(respones);
+                    $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable('load', respones);
+                }
+            });
         };
 
         //var strSelected_CB = 0
@@ -412,6 +429,18 @@
             }
         });
 
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: '../server/flight',
+                dataType: 'json',
+                data: '',
+                success:function (respones) {
+
+                    console.log(respones);
+                }
+            });
+        });
     </script>
 </body>
 </html>

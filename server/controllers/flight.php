@@ -133,7 +133,7 @@
 				echo "Số lượng khách tìm kiếm không được âm";
 				return false;
 			}
-			elseif(empty($hang)))
+			elseif(empty($hang))
 			{
 				
 				echo "Xin nhập hạng vé";

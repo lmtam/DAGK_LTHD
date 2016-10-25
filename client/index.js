@@ -5,7 +5,9 @@ var strTongTien = 0;
 
 $('#dtpNgayDi').datetimepicker({
     format: 'YYYY-MM-DD',
-    defaultDate: new Date()
+    defaultDate: new Date(),
+    minDate: new Date()
+
 });
 
 $('#dtpNgayVe').datetimepicker({
@@ -98,6 +100,25 @@ $('table[id$=tblDanhSachChuyenBayDi]').on('click-row.bs.table', function (row, $
 //});
 
 function ShowThongTinKH() {
+
+    var strHoten    = $('#txtHoTen').val();
+    var strDanhxung = $('#cboDanhxungdaidien :selected').val();
+    var strEmail    = $('#txtEmail').val();
+    var strSdt      = $('#txtSDT').val();
+    // console.log(strSdt);
+    //var strTongTien =
+    // console.log(strTongTien);
+    //kt du lieu
+    if(strHoten =='' || strDanhxung == '' || strEmail == '' || strSdt ==''){
+        sweetAlert("Phải nhập thông tin người đặt vé.","","error");
+        return;
+    }
+    else{
+        if(!emailcheck(strEmail)){
+            sweetAlert("Lỗi","","Email sai.");
+            return;
+        }
+    }
     $('#divTimKiem').addClass("hidden");
     $('#divDatCho').addClass("hidden");
     $('#divThongTinKH').removeClass("hidden");
@@ -142,7 +163,7 @@ function ShowThongTinKH() {
     strTongTien = parseInt(strSoHanhKhach) * parseInt(strGiaVe);
     $('#divTienVe').text(strTongTien);
 
-    strSoHanhKhach = 1;
+    // strSoHanhKhach = 1;
 };
 
 //luu xuong co so du lieu
@@ -152,29 +173,61 @@ function btnHoanTat() {
     $('#divThongTinKH').addClass("hidden");
     $('#divHoanTat').removeClass("hidden");
     $('#divColorHoanTat').css("color", "red");
-    // var strHoten = $('#txtHoTen').val();
-
+    var strHoten    = $('#txtHoTen').val();
+    var strDanhxung = $('#cboDanhxungdaidien :selected').val();
+    var strEmail    = $('#txtEmail').val();
+    var strSdt      = $('#txtSDT').val();
+    // console.log(strSdt);
     //var strTongTien =
-    console.log(strTongTien);
+    // console.log(strTongTien);
+    //kt du lieu
+    if(!hanhkhachCheck(strSoHanhKhach)){
+        sweetAlert("Phải nhập đầy đủ thông tin hành khách.","","error");
+        return;
+    }
+
+
+
+
     $.ajax({
         type: "POST",
         url: '../server/booking',
         data: {
             tongtien : strTongTien,
-            danhxung : "MR",
-            hoten   : "Le minh tam",
-            sdt     : "01234567",
-            email   :  "adagfafgasdfgasfg"
+            danhxung : strDanhxung,
+            hoten   : strHoten,
+            sdt     : strSdt,
+            email   :  strEmail
         },
         dataType: 'json',
         success:function (respones) {
             console.log(respones);
-            //sweetAlert("Đặt vé thành công", "", "success");
 
+            for(var i=1; i<=strSoHanhKhach;i++){
+                var strdanhxungx    = $('#cboDanhXungHanhKhach'+i +' :selected').val();
+                var strhox          = $('#txtHoHanhKhach'+i).val();
+                var strtenx         = $('#txtTenHanhKhach'+1).val();
+                $.ajax({
+                    type: "POST",
+                    url: '../server/passengers ',
+                    dataType: 'json',
+                    data: {
+                        danhxung: strdanhxungx,
+                        ho      : strhox,
+                        ten     : strtenx
+                    },
+                    success:function (respones) {
+
+
+                    }
+                });
+            }
+            sweetAlert("Đặt vé thành công", "", "success");
         },
-        error:function (){
-            sweetAlert("Lỗi", "", "error");
+        error: function () {
+            sweetAlert("Lỗi","","error");
         }
+
     });
 
 };
@@ -234,8 +287,58 @@ $('#cboDiemDi').change(function () {
 
 
 // ------------------------------------
+//kt email
+function emailcheck(str) {
+    var at = "@"
+    var dot = "."
+    var lat = str.indexOf(at)
+    var lstr = str.length
+    var ldot = str.indexOf(dot)
+    if (str.indexOf(at) == -1) {
+        //alert("Email sai định dạng.")
+        return false
+    }
+    if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
+        //alert("Email sai định dạng.")
+        return false
+    }
+    if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
+        //alert("Email sai định dạng")
+        return false
+    }
+    if (str.indexOf(at, (lat + 1)) != -1) {
+        //alert("Email sai định dạng.")
+        return false
+    }
+    if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
+        //alert("Email sai định dạng.")
+        return false
+    }
+    if (str.indexOf(dot, (lat + 2)) == -1) {
+        //alert("Email sai định dạng.")
+        return false
+    }
+    if (str.indexOf(" ") != -1) {
+        //alert("Email sai định dạng.")
+        return false
+    }
+    return true
+}
+//kt thong tin hanh khách
+function hanhkhachCheck(strSoHanhKhach) {
+    var kt = true;
+    for(var i=1; i<=strSoHanhKhach;i++){
+        var strdanhxungx    = $('#cboDanhXungHanhKhach'+i +' :selected').val();
+        var strhox          = $('#txtHoHanhKhach'+i).val();
+        var strtenx         = $('#txtTenHanhKhach'+1).val();
+        if(strdanhxungx =='' || strhox == '' || strtenx == ''){
 
-
+            kt = false;
+            break;
+        }
+    }
+    return kt;
+}
 //1
 function DSSanbaydi() {
     $.ajax({

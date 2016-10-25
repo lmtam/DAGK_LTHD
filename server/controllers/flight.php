@@ -18,8 +18,7 @@
 		}
 		public function getList()
 		{
-			$madc=$this->generateUniqueID();
-			$_SESSION["madc"]=$madc;
+
 			
 			$list=$this->model->getList();
 			if(!$list)
@@ -34,7 +33,8 @@
 		}
 		public function showDepartureAirportList()
 		{
-			
+			$madc=$this->generateUniqueID();
+            $_SESSION["madc"]=$madc;
 			$list=$this->model->getDepartureAirportList();
 			if(!$list)
 			{

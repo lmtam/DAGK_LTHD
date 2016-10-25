@@ -31,12 +31,13 @@
 	{
 		$data=$request->getParsedBody();
 
+
 		$con=new Booking_Controller();
 		
 		
 		$result=$con->createBooking($data['tongtien'],$data['danhxung'],$data['hoten'],$data['sdt'],$data['email']);
 		
-		//echo $result;
+		echo $result;
 	});
 	$app->put("/flights/{macb}/{hang}/{muc}",function($request,$response,$args)
 	{
@@ -74,10 +75,11 @@
 	});
 	$app->post("/passengers",function($request,$response,$args)
 	{
+	    $data = $request->getParsedBody();
 		$con=new Passenger_Controller();
-		$danhxung=$request["danhxung"];
-		$ho=$request["ho"];
-		$ten=$request["ten"];
+		$danhxung=$data["danhxung"];
+		$ho=$data["ho"];
+		$ten=$data["ten"];
 		$result=$con->createPassenger($danhxung,$ho,$ten);
 		echo $result;
 	});

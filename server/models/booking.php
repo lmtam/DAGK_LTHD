@@ -16,9 +16,9 @@
 
 		public function createBooking($tongtien,$danhxung,$hoten,$sdt,$email)
 		{
-			
+
 			$sql="INSERT INTO datcho VALUES(:madc,:thoigian,:tongtien,:trangthai,:danhxung,:hoten,:sdt,:email)";
-			echo $sql;
+
 			try
 			{
 				//$madc=$this->generateUniqueID();
@@ -27,23 +27,23 @@
 				
 				$a=$this->con->prepare($sql);
 				
-				$a->bindParam("madc",$_SESSION["madc"],PDO::PARAM_STR);
-				$a->bindParam("thoigian",$thoigian);
-				$a->bindParam("tongtien",$tongtien);
+				$a->bindParam("madc",$_SESSION['madc'],PDO::PARAM_STR);
+				$a->bindParam("thoigian",$thoigian,PDO::PARAM_STR);
+				$a->bindParam("tongtien",$tongtien,PDO::PARAM_STR);
 				$a->bindParam("trangthai",$x = 1,PDO::PARAM_STR);
-				$a->bindParam("danhxung",$danhxung);
-				$a->bindParam("hoten",$hoten);
-				$a->bindParam("sdt",$sdt);
-				$a->bindParam("email",$email);
+				$a->bindParam("danhxung",$danhxung,PDO::PARAM_STR);
+				$a->bindParam("hoten",$hoten,PDO::PARAM_STR);
+				$a->bindParam("sdt",$sdt,PDO::PARAM_STR);
+				$a->bindParam("email",$email,PDO::PARAM_STR);
 				$a->execute();
 				$this->Disconnection();
-				session_destroy();
-				return true;
+
+                return true;
 			}
 			catch(Exception $e)
 			{
 				echo "Caught Exception: ".$e->getMessage();
-				return false;
+                return false;
 			}
 		}
 		public function getBookingInfo()

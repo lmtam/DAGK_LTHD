@@ -1,4 +1,5 @@
 <?php
+
 	require_once("databases/dbconnect.php");
 	class Passenger_Model
 	{
@@ -34,14 +35,18 @@
 			$sql="INSERT INTO hanhkhach VALUES(:madc,:danhxung,:ho,:ten)";
 			try
 			{
+
 				$a=$this->con->prepare($sql);
-				$a->bindParam("madc",$_SESSION["madc"]);
-				$a->bindParam("danhxung",$params["danhxung"]);
-				$a->bindParam("ho",$params["ho"]);
-				$a->bindParam("ten",$params["ten"]);
-				$a->excute();
+
+				$a->bindParam("madc",$_SESSION["madc"],PDO::PARAM_STR);
+				$a->bindParam("danhxung",$params["danhxung"],PDO::PARAM_STR);
+				$a->bindParam("ho",$params["ho"],PDO::PARAM_STR);
+				$a->bindParam("ten",$params["ten"],PDO::PARAM_STR);
+				$a->execute();
 				$this->Disconnection();
 				return true;
+
+
 			}
 			catch(Exception $e)
 			{

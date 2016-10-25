@@ -17,7 +17,7 @@
 		public function createBooking($tongtien,$danhxung,$hoten,$sdt,$email)
 		{
 
-			$sql="INSERT INTO datcho VALUES(:madc,:thoigian,:tongtien,:trangthai,:danhxung,:hoten,:sdt,:email)";
+			$sql="INSERT INTO datcho VALUES(:madc,:thoigian,:trangthai,:tongtien,:danhxung,:hoten,:sdt,:email)";
 
 			try
 			{

@@ -90,11 +90,11 @@
 		}
 		public function updateSeat($macb,$hang,$muc,$soluong)
 		{
-			$sql="UPDATE chuyenbay SET Soghe=:soghe WHERE Machuyenbay=:macb AND Hang=:hang AND Mucgia=:mucgia";
+			$sql="UPDATE chuyenbay SET Soluongghe=:soghe WHERE Machuyenbay=:macb AND Hang=:hang AND Mucgia=:mucgia";
 			try
 			{
 				$a=$this->con->prepare($sql);
-				$a->bindParam("soghe",$soluong,PDO::PARAM_STR);
+				$a->bindParam("soghe",$soluong,PDO::PARAM_INT);
 				$a->bindParam("macb",$macb,PDO::PARAM_STR);
 				$a->bindParam("hang",$hang,PDO::PARAM_STR);
 				$a->bindParam("mucgia",$muc,PDO::PARAM_STR);

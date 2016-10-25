@@ -2,6 +2,10 @@
 var strSoHanhKhach = 1;
 var strGiaVe = 0;
 var strTongTien = 0;
+var chedo  = 1; // 1 là 1 chiều 2 là khu hoi
+var strcbDi = new Object();
+var strcbVe = new Object();
+var strVeconlai = 0;
 
 $('#dtpNgayDi').datetimepicker({
     format: 'YYYY-MM-DD',
@@ -14,8 +18,7 @@ $('#dtpNgayVe').datetimepicker({
     format: 'YYYY-MM-DD',
     defaultDate: new Date(),
     minDate: new Date()
-}); 
-
+});
 $('#dtpNgayDiCB').datetimepicker({
     format: 'YYYY-MM-DD',
     defaultDate: new Date(),
@@ -37,13 +40,12 @@ $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable({
 $("table[id$=tblDanhSachChuyenBayVe]").bootstrapTable({
     classes: 'table table-hover',
     //data: data
-}); 
+});
 
 $("table[id$=tbltabDanhSach]").bootstrapTable({
     classes: 'table table-hover',
     //data: data
 });
-
 function ShowTimKiem() {
     $('#divTimKiem').removeClass("hidden");
     $('#divDatCho').addClass("hidden");
@@ -63,17 +65,20 @@ function ShowDatCho() {
     var strDiemden = $('#cboDiemDen :selected').val();
     var strHang    = $('#cboHangVe :selected').val();
     var soluongve;
+
+    // console.log(strNgayVe);
     strSoHanhKhach = parseInt(strNguoiLon) + parseInt(strTreEm) + parseInt(strEmBe);
+
+    if($('#cboDiemDi :selected').val() == ''){
+        sweetAlert("Chọn địa điểm đi", "", "error");
+        return;
+    }
+
     if (strSoHanhKhach > 5) {
         sweetAlert("Chỉ đặt vé tối đa là 6 người", "", "error");
         return;
     }
-    //if ($('#cboDiemDi').val() == "") {
-    //    sweetAlert("Bạn chưa chọn điểm đi", "", "error");
-    //    return;
-    //}
     soluongve = strSoHanhKhach.toString();
-
     //if (parseInt(strNgayVe[2]) < parseInt(strNgayDi[2])
     //    || parseInt(strNgayVe[1]) < parseInt(strNgayDi[1])
     //    || parseInt(strNgayVe[0]) < parseInt(strNgayDi[0])) {
@@ -87,18 +92,45 @@ function ShowDatCho() {
     $('#divThongTinKH').addClass("hidden");
     $('#divHoanTat').addClass("hidden");
     $('#divColorDatCho').css("color", "red");
-    $("table[id$=tblDanhSachChuyenBay]").bootstrapTable('load', data);
 
-    $.ajax({
-        type: "GET",
-        url: '../server/flights/'+strDiemdi +'/'+strDiemden+'/'+strNgayDi+'/'+soluongve+'/'+strHang,
-        dataType: 'json',
-        data: '',
-        success:function (respones) {
+    // $("table[id$=tblDanhSachChuyenBay]").bootstrapTable('load', data);
+    if(chedo == 1) {
+        $('#divChuyenBayVe').addClass("hidden");
+        $.ajax({
+            type: "GET",
+            url: '../server/flights/' + strDiemdi + '/' + strDiemden + '/' + strNgayDi + '/' + soluongve + '/' + strHang,
+            dataType: 'json',
+            data: '',
+            success: function (respones) {
 
-            $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable('load', respones);
-        }
-    });
+                $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable('load', respones);
+            }
+        });
+    }
+    else{
+        $('#divChuyenBayVe').removeClass("hidden");
+        $.ajax({
+            type: "GET",
+            url: '../server/flights/' + strDiemdi + '/' + strDiemden + '/' + strNgayDi + '/' + soluongve + '/' + strHang,
+            dataType: 'json',
+            data: '',
+            success: function (respones) {
+
+                $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable('load', respones);
+
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: '../server/flights/' + strDiemden + '/' + strDiemdi + '/' + strNgayVe + '/' + soluongve + '/' + strHang,
+            dataType: 'json',
+            data: '',
+            success: function (respones) {
+
+                $("table[id$=tblDanhSachChuyenBayVe]").bootstrapTable('load', respones);
+            }
+        });
+    }
 };
 
 //var strSelected_CB = 0
@@ -107,14 +139,27 @@ $('table[id$=tblDanhSachChuyenBayDi]').on('click-row.bs.table', function (row, $
     $('#divTenChuyenBayDi').text($element["Machuyenbay"]);
     $('#divGiaBan').text($element["Giaban"]);
     strGiaVe = $element["Giaban"];
+    strcbDi.macb = $element["Machuyenbay"];
+    strcbDi.ngay = $element['Ngay'];
+    strcbDi.hang = $element['Hang'];
+    strcbDi.mucgia = $element['Mucgia'];
+    strcbDi.giaban = $element['Giaban'];
+    strcbDi.veconlai = $element['Soluongghe'];
     //strSelected_CB = 1;
+
 });
 
-//$('table[id$=tblDanhSachChuyenBayVe]').on('click-row.bs.table', function (row, $element, field) {
-//    $('#divChoNgoi').removeClass("hidden");
-//    $('#divTenChuyenBayVe').text($element["MaCB"]);
-//    strSelected_CB = 2;
-//});
+$('table[id$=tblDanhSachChuyenBayVe]').on('click-row.bs.table', function (row, $element, field) {
+   $('#divChoNgoi').removeClass("hidden");
+   $('#divTenChuyenBayVe').text($element["Machuyenbay"]);
+    strcbVe.macb = $element["Machuyenbay"];
+    strcbVe.ngay = $element['Ngay'];
+    strcbVe.hang = $element['Hang'];
+    strcbVe.mucgia = $element['Mucgia'];
+    strcbVe.giaban = $element['Giaban'];
+    strcbVe.veconlai = $element['Soluongghe'];
+   strSelected_CB = 2;
+});
 
 function ShowThongTinKH() {
 
@@ -177,7 +222,12 @@ function ShowThongTinKH() {
     }
 
     // tinh tien ve
-    strTongTien = parseInt(strSoHanhKhach) * parseInt(strGiaVe);
+    if(chedo ==1) {
+        strTongTien = strTongTien = parseInt(strSoHanhKhach) * parseInt(strcbDi.giaban);
+    }else{
+        strTongTien =  parseInt(strSoHanhKhach) * parseInt(strcbDi.giaban) +  parseInt(strSoHanhKhach) * parseInt(strcbVe.giaban);
+    }
+
     $('#divTienVe').text(strTongTien);
 
     // strSoHanhKhach = 1;
@@ -219,7 +269,36 @@ function btnHoanTat() {
         dataType: 'json',
         success:function (respones) {
             console.log(respones);
+            $.ajax({
+                type: "POST",
+                url: '../server/flightdetails',
+                dataType: 'json',
+                data: {
+                    macb    : strcbDi.macb,
+                    ngay    : strcbDi.ngay,
+                    hang    :strcbDi.hang,
+                    mucgia  :strcbDi.mucgia
+                },
+                success:function (respones) {
 
+                }
+            });
+            if(chedo == 2){
+                $.ajax({
+                    type: "POST",
+                    url: '../server/flightdetails',
+                    dataType: 'json',
+                    data: {
+                        macb    : strcbVe.macb,
+                        ngay    : strcbVe.ngay,
+                        hang    :strcbVe.hang,
+                        mucgia  :strcbVe.mucgia
+                    },
+                    success:function (respones) {
+
+                    }
+                });
+            }
             for(var i=1; i<=strSoHanhKhach;i++){
                 var strdanhxungx    = $('#cboDanhXungHanhKhach'+i +' :selected').val();
                 var strhox          = $('#txtHoHanhKhach'+i).val();
@@ -235,6 +314,42 @@ function btnHoanTat() {
                     },
                     success:function (respones) {
 
+                    }
+                });
+            }
+            if(chedo == 1){
+                $.ajax({
+                    type: "POST",
+                    url: '../server/flights/'+strcbDi.macb+ '/'+strcbDi.hang+'/'+strcbDi.mucgia,
+                    dataType: 'json',
+                    data: {
+                        veconlai:strcbDi.veconlai - strSoHanhKhach
+                    },
+                    success:function (respones) {
+
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: '../server/flights/'+strcbDi.macb+ '/'+strcbDi.hang+'/'+strcbDi.mucgia,
+                    dataType: 'json',
+                    data: {
+                        veconlai:strcbDi.veconlai - strSoHanhKhach
+                    },
+                    success:function (respones) {
+
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: '../server/flights/'+strcbVe.macb+ '/'+strcbVe.hang+'/'+strcbVe.mucgia,
+                    dataType: 'json',
+                    data: {
+                        veconlai:strcbVe.veconlai - strSoHanhKhach
+                    },
+                    success:function (respones) {
 
                     }
                 });
@@ -248,32 +363,18 @@ function btnHoanTat() {
     });
 
 };
-
-//chuyen sang tab thanh cong
-function reviewThongTin() {
-    var strNgayVe = "";
-    if ($("#rbKhuHoi").is(":checked")) {
-        $('#RVdivLoaiVe').val("Khứ hồi");
-        strNgayVe = $('#txtNgayVe').val();
-    }
-    else {
-        $('#RVdivLoaiVe').val("Một chiều");
-    }
+function SaveChuyenBay() {
     
-    $('#RVdivHangVe').val($('#cboHangVe :selected').val());
-    $('#RVdivDiemDi').val($('#cboDiemDi :selected').val());
-    $('#RVdivDiemDen').val($('#cboHangVe :selected').val());
-    $('#RVdivNgayDi').val($('#txtNgayDi').val());
-    $('#RVdivNgayVe').val(strNgayVe);
-    $('#divSoLuongHanhKhach').val(strSoHanhKhach);
-};
+}
 
 $("input[name='rbChuyenBay']").click(function () {
     if ($("#rbKhuHoi").is(":checked")) {
         $('#divNgayVe').removeClass('hidden');
+        chedo = 2;
     }
     else {
         $('#divNgayVe').addClass('hidden');
+        chedo = 1;
     }
 });
 
@@ -293,8 +394,10 @@ $(document).ready(function () {
 
         }
     });
+
     //var strDiemDi = $('#cboDiemDi :selected').val();
 
+    DSChuyenbay();
 });
 $('#cboDiemDi').change(function () {
     $('#cboDiemDen').empty();
@@ -317,10 +420,18 @@ $('#cboDiemDi').change(function () {
 });
 
 
-//them chuyen bay
-function NewChuyenBay() {
-    $('#divChiTietChuyenBay').removeClass('hidden');
-};
+function DSChuyenbay() {
+    $.ajax({
+        type: "GET",
+        url: '../server/flights',
+        dataType: 'json',
+        data: '',
+        success:function (respones) {
+            $("table[id$=tbltabDanhSach]").bootstrapTable('load', respones);
+
+        }
+    });
+}
 
 
 
@@ -378,125 +489,32 @@ function hanhkhachCheck(strSoHanhKhach) {
     }
     return kt;
 }
-//1
-function DSSanbaydi() {
-    $.ajax({
-        type: "GET",
-        url: '../server/departureairports ',
-        dataType: 'json',
-        data: '',
-        success:function (respones) {
 
-            return respones;
-        }
-    });
-}
-//2
-function Sanbayden(noidi) {
-    $.ajax({
-        type: "GET",
-        url: '../server/arrivalairport/'+noidi,
-        dataType: 'json',
-        data: '',
-        success:function (respones) {
+//chuyen sang tab thanh cong
+function reviewThongTin() {
+    console.log("123");
+    var strNgayVe = "";
+    if ($("#rbKhuHoi").is(":checked")) {
+        $('#RVdivLoaiVe').text("Khứ hồi");
+        strNgayVe = $('#txtNgayVe').val();
 
-            return respones;
-        }
-    });
-}
+    }
+    else {
+        $('#RVdivLoaiVe').text("Một chiều");
+        $('#RVdivNgayVe').addClass('hidden');
+    }
 
-//3
-//có thể truyền vào them tong tin
-function Datchomoi(macb,ngaydat) {
-    $.ajax({
-        type: "POST",
-        url: '../server/booking',
-        dataType: 'json',
-        data: {
-            machuyenbay : macb,
-            ngaydatcho : ngaydat,
-        },
-        success:function (respones) {
+    $('#RVdivHangVe').text($('#cboHangVe :selected').text());
+    $('#RVdivDiemDi').text($('#cboDiemDi :selected').text());
+    $('#RVdivDiemDen').text($('#cboDiemDen :selected').text());
 
-            return respones;
-        }
-    });
-}
-//4
-function DSChangbay() {
-    $.ajax({
-        type: "GET",
-        url: '../server/fightdetails',
-        dataType: 'json',
-        data: '',
-        success:function (respones) {
+    $('#RVdivDiemDen').text(", điểm về: " + $('#cboDiemDen :selected').text());
+    $('#RVdivNgayDi').text($('#txtNgayDi').val());
+    $('#RVdivNgayVe').text(", ngày về: " + strNgayVe);
+    $('#divSoLuongHanhKhach').text(strSoHanhKhach);
+};
+//them chuyen bay
+function NewChuyenBay() {
+    $('#divChiTietChuyenBay').removeClass('hidden');
 
-            return respones;
-        }
-    });
-}
-//5
-function ThemChangbay(madc,macb,hang,gia) {
-    $.ajax({
-        type: "POST",
-        url: '../server/fightdetails',
-        dataType: 'json',
-        data: {
-            madatcho : madc,
-            machuyenbay : macb,
-            hang : hang,
-            mucgia : gia
-
-        },
-        success:function (respones) {
-
-            return respones;
-        }
-    });
-}
-//6
-function DSKhachhang() {
-    $.ajax({
-        type: "GET",
-        url: '../server/passengers',
-        dataType: 'json',
-        data: '',
-        success:function (respones) {
-
-            return respones;
-        }
-    });
-}
-//7
-function ThemKhachhang(madc, danhxung,ho, ten) {
-    $.ajax({
-        type: "POST",
-        url: '../server/passengers',
-        dataType: 'json',
-        data: {
-            madatcho : madc,
-            danhxung : danhxung,
-            ho : ho,
-            ten : ten
-
-        },
-        success:function (respones) {
-
-            return respones;
-        }
-    });
-}
-//8
-function Timkiemchuyenbay(noidi,noiden,ngaydi,soluong) {
-    $.ajax({
-        type: "GET",
-        url: '../server/fight/'+ noiden+'/'+ noidi + '/' + ngaydi + '/' +soluong,
-        dataType: 'json',
-        data: '',
-        success:function (respones) {
-
-            return respones;
-        }
-    });
-}
-
+};

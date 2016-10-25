@@ -116,9 +116,9 @@
 				 return false;
 
 			}
-			elseif($noiden)
+			elseif(empty($noiden))
 			{
-				 echo "Số lương không được âm";
+				 echo "Xin nhập mã sân bay đến";
 				 return false;
 
 			}

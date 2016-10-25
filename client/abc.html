@@ -1,0 +1,80 @@
+<div id="divDatCho" class="col-md-12 hidden" style="background: white;padding-bottom: 20px">
+    <div>
+        <h3 style="font-weight: bold">Chọn chuyến bay đi</h3>
+        <table id="tblDanhSachChuyenBayDi">
+            <thead>
+            <tr>
+
+                <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
+                <th data-width="20%" data-field="Ngay">Ngày</th>
+                <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
+                <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
+                <th data-width="20%" data-field="Hang">Hạng vé</th>
+                <th data-width="20%" data-field="Giaban">Giá bán</th>
+                <th data-width="25%" data-field="Mucgia" data-visible="false"></th>
+            </tr>
+            </thead>
+        </table>
+        <div>
+            <i>Đã chọn chuyến bay: </i><span style="color: red" id="divTenChuyenBayDi"></span>
+            <i>, giá bán: </i><span style="color: red" id="divGiaBan"></span>
+        </div>
+    </div>
+    <div id="divChuyenBayVe" class="">
+        <h3 style="font-weight: bold">Chọn chuyến bay về</h3>
+        <table id="tblDanhSachChuyenBayVe">
+            <thead>
+            <tr>
+                <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
+                <th data-width="20%" data-field="Ngay">Ngày</th>
+                <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
+                <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
+                <th data-width="20%" data-field="Hang">Hạng vé</th>
+                <th data-width="20%" data-field="Giaban">Giá bán</th>
+                <th data-width="25%" data-field="Mucgia" data-visible="false"></th>
+            </tr>
+            </thead>
+        </table>
+        <div><em>Đã chọn chuyến bay: </em><span style="color: red" id="divTenChuyenBayVe"></span></div>
+    </div>
+
+    <div id="divChoNgoi" class="hidden" style="background: white">
+        <h3 style="font-weight: bold">Thông tin liên hệ</h3>
+        <div class="row" >
+            <div class="col-md-1" style="padding-right: 0px;">
+                <div style="padding-top: 8px">Danh xưng</div>
+            </div>
+            <div class="col-md-2" >
+                <select class="form-control" id="cboDanhxungdaidien">
+                    <option value="MR">Ông</option>
+                    <option value="MS">Bà</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <div style="padding-top: 8px">Họ tên</div>
+            </div>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="txtHoTen"/>
+            </div>
+            <div class="col-md-1">
+                <div style="padding-top: 8px">SĐT</div>
+            </div>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="txtSDT"/>
+            </div>
+            <div class="col-md-1">
+                <div style="padding-top: 8px">Email</div>
+            </div>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="txtEmail"/>
+            </div>
+        </div>
+
+        <div style="padding-top: 10px;text-align: center">
+            <button class="btn btn-lg btn-warning" onclick="ShowThongTinKH()">
+                Tiếp tục
+            </button>
+        </div>
+    </div>
+</div>
+

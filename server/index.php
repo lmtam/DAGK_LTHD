@@ -39,17 +39,18 @@
 		
 		echo $result;
 	});
-	$app->put("/flights/{macb}/{hang}/{muc}",function($request,$response,$args)
+	$app->post("/flights/{macb}/{hang}/{muc}",function($request,$response,$args)
 	{
 		$macb=$args["macb"];
 		$hang=$args["hang"];
 		$muc=$args["muc"];
+
 		$input=$request->getParsedBody();
 		$veconlai=$input["veconlai"];
-		
+
 		$con=new Flight_Controller();
 		$result=$con->updateSeat($macb,$hang,$muc,$veconlai);
-		
+
 	});
 	$app->get("/flightdetails",function($request,$response,$args)
 	{
@@ -64,9 +65,9 @@
 		$macb=$data["macb"];
 		$ngay = $data["ngay"];
 		$hang=$data["hang"];
-		$mucgia=$data["mucgia"]
+		$mucgia=$data["mucgia"];
 		
-		$result=$con->createFlightDetail($macb,$ngay,$hang,$mucgia);
+		$result = $con->createFlightDetail($macb,$ngay,$hang,$mucgia);
 		echo $result;
 	});
 	$app->get("/passengers",function($request,$response,$args)	

@@ -1,4 +1,4 @@
-﻿ <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -24,15 +24,15 @@
         }
 
         .minImage {
-                width: 100%;
-                padding-left: 15px;
+            width: 100%;
+            padding-left: 15px;
         }
 
         @media (max-width: 992px) {
             .minImage {
-                width: 100%;      
+                width: 100%;
                 padding-left: 0px;
-                padding-top: 20px;          
+                padding-top: 20px;
             }
         }
 
@@ -43,546 +43,473 @@
         .nonePaddingRight {
             padding-right: 0px;
         }
-    </style>    
-    
+    </style>
+
     <title>Đặt vé máy bay</title>
 </head>
 <body>
-    <div id="navbar" style="width: 100%;background: #f9f9f9;height: 42px">
-        <div class="container" style="padding-top: 5px;color: #707070;">
-            <div class="pull-left">
-                <h1 style="font-size:12px;font-weight: normal;margin:9px 0">Hệ thống đặt vé máy bay rẻ nhất</h1>
-            </div>
-            <div class="pull-right hidden-xs" style="padding-top: 5px">
-                <div class="nav-user guest">
-                    <a style="padding-left: 10px" href="#" >Đăng nhập</a>  
-                    <a style="padding-left: 10px" href="#">Đăng ký</a>
-                </div>
-            </div>
-            <div class="pull-right hidden-xs">
-                <select class="form-control">                    
-                    <option >Tiếng Việt</option>
-                    <option >English</option>
-                </select>                   
-            </div>
-            <div class="clearfix"></div>
+<div id="navbar" style="width: 100%;background: #f9f9f9;height: 42px">
+    <div class="container" style="padding-top: 5px;color: #707070;">
+        <div class="pull-left">
+            <h1 style="font-size:12px;font-weight: normal;margin:9px 0">Hệ thống đặt vé máy bay rẻ nhất</h1>
         </div>
+        <div class="pull-right hidden-xs" style="padding-top: 5px">
+            <div class="nav-user guest">
+                <a style="padding-left: 10px" href="#" >Đăng nhập</a>
+                <a style="padding-left: 10px" href="#">Đăng ký</a>
+            </div>
+        </div>
+        <div class="pull-right hidden-xs">
+            <select class="form-control">
+                <option >Tiếng Việt</option>
+                <option >English</option>
+            </select>
+        </div>
+        <div class="clearfix"></div>
     </div>
-    <div style="padding: 10px; background: #491D74">
-        <div class="container">
-            <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="tab" href="#divMain" title="Đặt vé">Trang chủ</a></li>
-                <li><a data-toggle="tab" href="#divChuyenBay" title="Xem danh sách chuyến bay">Chuyến bay</a></li>
-            </ul>  
-        </div>
-    </div>   
+</div>
+<div style="padding: 10px; background: #491D74">
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" href="#divMain" title="Đặt vé">Trang chủ</a></li>
+            <li><a data-toggle="tab" href="#divChuyenBay" title="Xem danh sách chuyến bay">Chuyến bay</a></li>
+        </ul>
+    </div>
+</div>
 
-    <div class="tab-content">
-        <div id="divMain" style="padding-top: 20px" class="tab-pane fade in active">
-            <div id="step"  style="padding-bottom: 20px; color: white">
-                <div class="container hidden-xs" >
-                    <div class="row" style="padding: 20px;background-color: black; height: 70px">
-                        <div class="col-md-2 col-sm-2" >
-                            <div  style="color: white;cursor: pointer" onclick="ShowTimKiem()">
-                                <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Tìm kiếm chuyến bay</div>
-                        </div>
-                        <div class="col-md-1 col-sm-1" style="color: white; font-size: 20px">
-                            <div class="glyphicon glyphicon-chevron-right"></div>
-                        </div>                
-                        <div class="col-md-2 col-sm-2" >
-                            <div id="divColorDatCho" style="color: white;cursor: pointer" onclick="ShowDatCho()">
-                                <span class="glyphicon glyphicon-bed"></span>&nbsp;&nbsp;Đặt chỗ</div>
-                        </div>
-                        <div class="col-md-1 col-sm-1" style="color: white; font-size: 20px">
-                            <div class="glyphicon glyphicon-chevron-right"></div>
-                        </div>
-                        <div class="col-md-3 col-sm-2" >
-                            <div id="divColorTTKH" style="color: white;cursor: pointer" onclick="ShowThongTinKH()">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Thông tin hành khách</div>
-                        </div>
-                        <div class="col-md-1 col-sm-1" style="color: white; font-size: 20px">
-                            <div class="glyphicon glyphicon-chevron-right"></div>
-                        </div>
-                        <div class="col-md-2 col-sm-2">
-                            <div id="divColorHoanTat" style="color: white">
-                                <span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Đặt vé thành công</div>
-                        </div>
+<div class="tab-content">
+    <div id="divMain" style="padding-top: 20px" class="tab-pane fade in active">
+        <div id="step"  style="padding-bottom: 20px; color: white">
+            <div class="container hidden-xs" >
+                <div class="row" style="padding: 20px;background-color: black; height: 70px">
+                    <div class="col-md-2 col-sm-2" >
+                        <div  style="color: red;cursor: pointer" onclick="ShowTimKiem()">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Tìm kiếm chuyến bay</div>
+                    </div>
+                    <div class="col-md-1 col-sm-1" style="color: white; font-size: 20px">
+                        <div class="glyphicon glyphicon-chevron-right"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-2" >
+                        <div id="divColorDatCho" style="color: white;cursor: pointer" onclick="ShowDatCho()">
+                            <span class="glyphicon glyphicon-bed"></span>&nbsp;&nbsp;Đặt chỗ</div>
+                    </div>
+                    <div class="col-md-1 col-sm-1" style="color: white; font-size: 20px">
+                        <div class="glyphicon glyphicon-chevron-right"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-2" >
+                        <div id="divColorTTKH" style="color: white;cursor: pointer" onclick="ShowThongTinKH()">
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Thông tin hành khách</div>
+                    </div>
+                    <div class="col-md-1 col-sm-1" style="color: white; font-size: 20px">
+                        <div class="glyphicon glyphicon-chevron-right"></div>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <div id="divColorHoanTat" style="color: white">
+                            <span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Đặt vé thành công</div>
                     </div>
                 </div>
             </div>
-            <div class="container" style="">
-                <div id="divTimKiem" class="row" style="padding: 0px 15px;">
-                    <div class="col-md-6" style="background: #E4D2E3; padding: 10px; min-height: 263px">                   
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="radio">
-                                    <label><input type="radio" name="rbChuyenBay" id="rbKhuHoi" />Khứ hồi</label>
-                                    <label  style="padding-right: 20px"><input type="radio" name="rbChuyenBay" id="rbMotChieu" checked="checked"/>Một chiều</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div style="padding-top: 8px">Hạng vé</div>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control" id="cboHangVe">
-                                    <option value="Y">Thường</option>
-                                    <option value="C">VIP</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding-top: 10px">
-                            <div class="col-md-2">
-                                <div style="padding-top: 8px">Điểm đi</div>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control" id="cboDiemDi">
-
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <div style="padding-top: 8px">Điểm đến</div>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control" id="cboDiemDen">
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding-top: 10px">
-                            <div class="col-md-2">
-                                <div style="padding-top: 8px">Ngày đi</div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class='input-group date' id='dtpNgayDi'>
-                                    <input type='text' id="txtNgayDi" class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="divNgayVe" class="hidden">
-                                <div class="col-md-2">
-                                    <div style="padding-top: 8px">Ngày về</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class='input-group date' id='dtpNgayVe'>
-                                        <input type='text' id="txtNgayVe" class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding-top: 10px" id="divCustomer">
-                            <div class="col-md-4">
-                                <div>Người lớn (>=12T)</div>
-                                <select class="form-control" id="cboNguoiLon">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <div>Trẻ em (2-11 Tuổi)</div>
-                                <select class="form-control" id="cboTreEm">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <div>Em bé (< 23 Tháng)</div>
-                                <select class="form-control" id="cboEmBe">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding-top: 15px">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                <button class="btn btn-block btn-warning" onclick="ShowDatCho()">Tìm chuyến bay</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 " style="padding: 0px">
-                        <img src="Image/ve.jpg"  class="img-responsive center-block minImage"/>
-                    </div>
-                </div>
-
-                <div class="row" style="padding: 0px 15px;">
-                    <div id="divDatCho" class="col-md-12 hidden" style="background: white;padding-bottom: 20px">
-                        <div>
-                            <h3 style="font-weight: bold">Chọn chuyến bay đi</h3>
-                            <table id="tblDanhSachChuyenBayDi">
-                                <thead>
-                                    <tr>
-
-                                        <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
-                                        <th data-width="20%" data-field="Ngay">Ngày</th>
-                                        <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
-                                        <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
-                                        <th data-width="20%" data-field="Hang">Hạng vé</th>
-                                        <th data-width="20%" data-field="Giaban">Giá bán</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <div>
-                                <i>Đã chọn chuyến bay: </i><span style="color: red" id="divTenChuyenBayDi"></span>
-                                <i>, giá bán: </i><span style="color: red" id="divGiaBan"></span>
-                            </div>
-                        </div>    
-                        <div id="divChuyenBayVe" class="hidden">
-                            <h3 style="font-weight: bold">Chọn chuyến bay về</h3>
-                            <table id="tblDanhSachChuyenBayVe">
-                                <thead>
-                                    <tr>
-                                        <th data-width="25%" data-field="MaCB">Mã chuyến bay</th>
-                                        <th data-width="25%" data-field="GioDi">Giờ đi</th>
-                                        <th data-width="25%" data-field="GioDen">Giờ đến</th>
-                                        <th data-width="25%" data-field="Gia">Giá</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <div><em>Đã chọn chuyến bay: </em><span style="color: red" id="divTenChuyenBayVe"></span></div>
-                        </div>
-
-                        <div id="divChoNgoi" class="hidden" style="background: white">
-                            <h3 style="font-weight: bold">Thông tin liên hệ</h3>
-                            <div class="row" >
-                                <div class="col-md-1" style="padding-right: 0px;">
-                                    <div style="padding-top: 8px">Danh xưng</div>
-                                </div>
-                                <div class="col-md-2" >
-                                    <select class="form-control" id="cboDanhxungdaidien">
-                                        <option value="MR">Ông</option>
-                                        <option value="MS">Bà</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-1">
-                                    <div style="padding-top: 8px">Họ tên</div>
-                                </div>
-                                <div class="col-md-2">
-                                    <input class="form-control" type="text" id="txtHoTen"/>
-                                </div>
-                                <div class="col-md-1">
-                                    <div style="padding-top: 8px">SĐT</div>
-                                </div>
-                                <div class="col-md-2">
-                                    <input class="form-control" type="text" id="txtSDT"/>
-                                </div>
-                                <div class="col-md-1">
-                                    <div style="padding-top: 8px">Email</div>
-                                </div>
-                                <div class="col-md-2">
-                                    <input class="form-control" type="text" id="txtEmail"/>
-                                </div>
-                            </div>
-
-                            <div style="padding-top: 10px;text-align: center">
-                                <button class="btn btn-lg btn-warning" onclick="ShowThongTinKH()">
-                                    Tiếp tục
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div id="divThongTinKH" class="col-md-12 hidden" style="background: white; padding: 10px 10px">
-                        <h3 style="font-weight: bold">Thông tin hành khách</h3>
-                        <!--hanh khach 1-->
-                        <div class="row"  style="padding-top: 10px" id="divThongtinHanhKhach1">
-                            <i class="col-md-2" style="padding-top: 8px">Hành khách 1</i>
-                            <div class="col-md-1" style="padding-right: 0px;">
-                                <div style="padding-top: 8px">Danh xưng</div>
-                            </div>
-                            <div class="col-md-2" >
-                                <select class="form-control" id="cboDanhXungHanhKhach1">
-                                    <option value="MR">Ông</option>
-                                    <option value="MS">Bà</option>
-                                </select>
-                            </div> 
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Họ</div>
-                            </div>
-                            <div class="col-md-2">  
-                                <input class="form-control" type="text" id="txtHoHanhKhach1"/>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Tên</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtTenHanhKhach1"/>
-                            </div>
-                            <!--<div class="col-md-1">-->
-                                <!--<div style="padding-top: 8px">Mã ghế</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-2">-->
-                                <!--<select class="form-control" type="text" id="cboMaGhe">-->
-                                    <!--<option>A1</option>-->
-                                    <!--<option>A2</option>-->
-                                    <!--<option>A3</option>-->
-                                    <!--<option>B1</option>-->
-                                    <!--<option>B2</option>-->
-                                    <!--<option>B3</option>-->
-                                    <!--<option>C1</option>-->
-                                    <!--<option>C2</option>-->
-                                    <!--<option>C3</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
-                        </div>
-                        <!--hanh khach 2-->
-                        <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach2">
-                            <i class="col-md-2" style="padding-top: 8px">Hành khách 2</i>
-                            <div class="col-md-1" style="padding-right: 0px;">
-                                <div style="padding-top: 8px">Danh xưng</div>
-                            </div>
-                            <div class="col-md-2" >
-                                <select class="form-control" id="cboDanhXungHanhKhach2">
-                                    <option value="MR">Ông</option>
-                                    <option value="MS">Bà</option>
-                                </select>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Họ</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtHoHanhKhach2"/>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Tên</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtTenHanhKhach2"/>
-                            </div>
-
-                        </div>
-                        <!--hanh khach 3-->
-                        <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach3">
-                            <i class="col-md-2" style="padding-top: 8px">Hành khách 3</i>
-                            <div class="col-md-1" style="padding-right: 0px;">
-                                <div style="padding-top: 8px">Danh xưng</div>
-                            </div>
-                            <div class="col-md-2" >
-                                <select class="form-control" id="cboDanhXungHanhKhach3">
-                                    <option value="MR">Ông</option>
-                                    <option value="MS">Bà</option>
-                                </select>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Họ</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtHoHanhKhach3"/>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Tên</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtTenHanhKhach3"/>
-                            </div>
-                        </div>
-                        <!--hanh khach 4-->
-                        <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach4">
-                            <i class="col-md-2" style="padding-top: 8px">Hành khách 4</i>
-                            <div class="col-md-1" style="padding-right: 0px;">
-                                <div style="padding-top: 8px">Danh xưng</div>
-                            </div>
-                            <div class="col-md-2" >
-                                <select class="form-control" id="cboDanhXungHanhKhach4">
-                                    <option value="MR">Ông</option>
-                                    <option value="MS">Bà</option>
-                                </select>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Họ</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtHoHanhKhach4"/>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Tên</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtTenHanhKhach4"/>
-                            </div>
-                        </div>
-                        <!--hanh khach 5-->
-                        <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach5">
-                            <i class="col-md-2" style="padding-top: 8px">Hành khách 5</i>
-                            <div class="col-md-1" style="padding-right: 0px;">
-                                <div style="padding-top: 8px">Danh xưng</div>
-                            </div>
-                            <div class="col-md-2" >
-                                <select class="form-control" id="cboDanhXungHanhKhach5">
-                                    <option value="MR">Ông</option>
-                                    <option value="MS">Bà</option>
-                                </select>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Họ</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtHoHanhKhach5"/>
-                            </div>
-                            <div class="col-md-1">
-                                <div style="padding-top: 8px">Tên</div>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" id="txtTenHanhKhach5"/>
-                            </div>
-                        </div>
-
-                        <div class="row" style="padding-top: 10px">
-                            <div class="col-md-12">
-                                <div><em>Tiền vé: </em><span style="color: red" id="divTienVe"></span></div>
-                            </div> 
-                        </div>
-                        <div style="padding-top: 10px;text-align: center">
-                            <button class="btn btn-lg btn-success" onclick="btnHoanTat()">
-                                <span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Hoàn tất
-                            </button>
-                        </div>                    
-                    </div>
-                    
-                    <div id="divHoanTat" class="col-md-12 hidden" style="background: white; font-size: 16px; padding: 10px 10px">
-                        <h3 class="text-center" style="font-weight: bold">Đăng kí thành công</h3>
-                        <label>Thông tin đặt chỗ:</label>
-                        <div>Vé: <span id="RVdivLoaiVe" class="review"></span></div>
-                        <div>Hạng vé: <span id="RVdivHangVe"></span></div>
-                        <div>Điểm đi: <span id="RVdivDiemDi"></span>, điểm đến: <span id="RVdivDiemDen"></span></div>                        
-                        <div>Ngày đi: <span id="RVdivNgayDi"></span>, Ngày về: <span id="RVdivNgayVe"></span></div>
-                        <div>Số lượng hành khách: <span id="divSoLuongHanhKhach"></span></div>
-                    </div>
-                </div>
-
-            
-            </div>
         </div>
-
-        <!--xem chuyen bay-->
-        <div id="divChuyenBay" class="tab-pane fade">
-            <div class="container" style="padding: 10px;background-color: white">
-                <div class="row">
-                    <div class="col-md-12" style=" padding-top: 10px; padding-bottom: 10px">
-                        <div>
-                            <h4 style="font-weight: bold" class="pull-left">Danh sách chuyến bay đi</h4>
-                            <button class="btn btn-success pull-right" type="button" id="btnThemChuyenBay" onclick="NewChuyenBay();">Thêm</button>
-                        </div>
-                        <table id="tbltabDanhSach">
-                            <thead>
-                                <tr>
-                                    <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
-                                    <th data-width="20%" data-field="Ngay">Ngày</th>
-                                    <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
-                                    <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
-                                    <th data-width="20%" data-field="Hang">Hạng vé</th>
-                                    <th data-width="20%" data-field="Giaban">Giá bán</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div id="divChiTietChuyenBay" class="hidden">
-                    <div class="row" >
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Mã CB</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="txtMaChuyenBay"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Tên CB</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="txtTenChuyenBay"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Mã nơi đi</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text1"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Tên nơi đi</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text2"/>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 8px">
-                        <div class="col-md-1 nonePaddingRight">
-                            <div style="padding-top: 8px">Mã nơi đến</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text5"/>
-                        </div>
-                        <div class="col-md-1 nonePaddingRight">
-                            <div style="padding-top: 8px">Tên nơi đến</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text6"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Ngày đi</div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class='input-group date' id='dtpNgayDiCB'>
-                                <input type='text' id="txtNgayDiCB" class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+        <div class="container" style="">
+            <div id="divTimKiem" class="row" style="padding: 0px 15px;">
+                <div class="col-md-6" style="background: #E4D2E3; padding: 10px; min-height: 263px">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="radio">
+                                <label><input type="radio" name="rbChuyenBay" id="rbKhuHoi" />Khứ hồi</label>
+                                <label  style="padding-right: 20px"><input type="radio" name="rbChuyenBay" id="rbMotChieu" checked="checked"/>Một chiều</label>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div style="padding-top: 8px">Hạng vé</div>
                         </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text4"/>
+                        <div class="col-md-4">
+                            <select class="form-control" id="cboHangVe">
+                                <option value="Y">Thường</option>
+                                <option value="C">VIP</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="row" style="padding-top: 8px">
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Mức giá</div>
+
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-2">
+                            <div style="padding-top: 8px">Điểm đi</div>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control" id="cboDiemDi">
+
+                            </select>
                         </div>
                         <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text7"/>
+                            <div style="padding-top: 8px">Điểm đến</div>
                         </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Số ghế</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text8"/>
-                        </div>
-                        <div class="col-md-1">
-                            <div style="padding-top: 8px">Giá bán</div>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="Text9"/>
+                        <div class="col-md-4">
+                            <select class="form-control" id="cboDiemDen">
+
+                            </select>
                         </div>
                     </div>
-                    <div class="row text-center" style="padding-top: 20px" >
-                        <button class="btn btn-primary btn-lg" type="button" onclick="SaveChuyenBay">Lưu chuyến bay</button>
+
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-2">
+                            <div style="padding-top: 8px">Ngày đi</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class='input-group date' id='dtpNgayDi'>
+                                <input type='text' id="txtNgayDi" class="form-control" />
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                            </div>
+                        </div>
+                        <div id="divNgayVe" class="hidden">
+                            <div class="col-md-2">
+                                <div style="padding-top: 8px">Ngày về</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class='input-group date' id='dtpNgayVe'>
+                                    <input type='text' id="txtNgayVe" class="form-control" />
+                                    <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 10px" id="divCustomer">
+                        <div class="col-md-4">
+                            <div>Người lớn (>=12T)</div>
+                            <select class="form-control" id="cboNguoiLon">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <div>Trẻ em (2-11 Tuổi)</div>
+                            <select class="form-control" id="cboTreEm">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <div>Em bé (< 23 Tháng)</div>
+                            <select class="form-control" id="cboEmBe">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 15px">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button class="btn btn-block btn-warning" onclick="ShowDatCho()">Tìm chuyến bay</button>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-6 " style="padding: 0px">
+                    <img src="Image/ve.jpg"  class="img-responsive center-block minImage"/>
+                </div>
             </div>
+
+            <div class="row" style="padding: 0px 15px;">
+                <div id="divDatCho" class="col-md-12 hidden" style="background: white;padding-bottom: 20px">
+                    <div>
+                        <h3 style="font-weight: bold">Chọn chuyến bay đi</h3>
+                        <table id="tblDanhSachChuyenBayDi">
+                            <thead>
+                            <tr>
+
+                                <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
+                                <th data-width="20%" data-field="Ngay">Ngày</th>
+                                <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
+                                <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
+                                <th data-width="20%" data-field="Hang">Hạng vé</th>
+                                <th data-width="20%" data-field="Giaban">Giá bán</th>
+                                <th data-width="25%" data-field="Mucgia" data-visible="false"></th>
+                                <th data-width="25%" data-field="Soluongghe" data-visible="false"></th>
+
+                            </tr>
+                            </thead>
+                        </table>
+                        <div>
+                            <i>Đã chọn chuyến bay: </i><span style="color: red" id="divTenChuyenBayDi"></span>
+                            <i>, giá bán: </i><span style="color: red" id="divGiaBan"></span>
+                        </div>
+                    </div>
+                    <div id="divChuyenBayVe" class="">
+                        <h3 style="font-weight: bold">Chọn chuyến bay về</h3>
+                        <table id="tblDanhSachChuyenBayVe">
+                            <thead>
+                            <tr>
+                                <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
+                                <th data-width="20%" data-field="Ngay">Ngày</th>
+                                <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
+                                <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
+                                <th data-width="20%" data-field="Hang">Hạng vé</th>
+                                <th data-width="20%" data-field="Giaban">Giá bán</th>
+                                <th data-width="25%" data-field="Mucgia" data-visible="false"></th>
+                                <th data-width="25%" data-field="Soluongghe" data-visible="false"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <div><em>Đã chọn chuyến bay: </em><span style="color: red" id="divTenChuyenBayVe"></span></div>
+                    </div>
+
+                    <div id="divChoNgoi" class="hidden" style="background: white">
+                        <h3 style="font-weight: bold">Thông tin liên hệ</h3>
+                        <div class="row" >
+                            <div class="col-md-1" style="padding-right: 0px;">
+                                <div style="padding-top: 8px">Danh xưng</div>
+                            </div>
+                            <div class="col-md-2" >
+                                <select class="form-control" id="cboDanhxungdaidien">
+                                    <option value="MR">Ông</option>
+                                    <option value="MS">Bà</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <div style="padding-top: 8px">Họ tên</div>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="text" id="txtHoTen"/>
+                            </div>
+                            <div class="col-md-1">
+                                <div style="padding-top: 8px">SĐT</div>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="text" id="txtSDT"/>
+                            </div>
+                            <div class="col-md-1">
+                                <div style="padding-top: 8px">Email</div>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="text" id="txtEmail"/>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 10px;text-align: center">
+                            <button class="btn btn-lg btn-warning" onclick="ShowThongTinKH()">
+                                Tiếp tục
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="divThongTinKH" class="col-md-12 hidden" style="background: white; padding: 10px 10px">
+                    <h3 style="font-weight: bold">Thông tin hành khách</h3>
+                    <!--hanh khach 1-->
+                    <div class="row"  style="padding-top: 10px" id="divThongtinHanhKhach1">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 1</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach1">
+                                <option value="MR">Ông</option>
+                                <option value="MS">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach1"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach1"/>
+                        </div>
+                        <!--<div class="col-md-1">-->
+                        <!--<div style="padding-top: 8px">Mã ghế</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-2">-->
+                        <!--<select class="form-control" type="text" id="cboMaGhe">-->
+                        <!--<option>A1</option>-->
+                        <!--<option>A2</option>-->
+                        <!--<option>A3</option>-->
+                        <!--<option>B1</option>-->
+                        <!--<option>B2</option>-->
+                        <!--<option>B3</option>-->
+                        <!--<option>C1</option>-->
+                        <!--<option>C2</option>-->
+                        <!--<option>C3</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
+                    </div>
+                    <!--hanh khach 2-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach2">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 2</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach2">
+                                <option value="MR">Ông</option>
+                                <option value="MS">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach2"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach2"/>
+                        </div>
+
+                    </div>
+                    <!--hanh khach 3-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach3">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 3</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach3">
+                                <option value="MR">Ông</option>
+                                <option value="MS">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach3"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach3"/>
+                        </div>
+                    </div>
+                    <!--hanh khach 4-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach4">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 4</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach4">
+                                <option value="MR">Ông</option>
+                                <option value="MS">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach4"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach4"/>
+                        </div>
+                    </div>
+                    <!--hanh khach 5-->
+                    <div class="row hidden"  style="padding-top: 10px" id="divThongtinHanhKhach5">
+                        <i class="col-md-2" style="padding-top: 8px">Hành khách 5</i>
+                        <div class="col-md-1" style="padding-right: 0px;">
+                            <div style="padding-top: 8px">Danh xưng</div>
+                        </div>
+                        <div class="col-md-2" >
+                            <select class="form-control" id="cboDanhXungHanhKhach5">
+                                <option value="MR">Ông</option>
+                                <option value="MS">Bà</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Họ</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtHoHanhKhach5"/>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding-top: 8px">Tên</div>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" id="txtTenHanhKhach5"/>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-12">
+                            <div><em>Tiền vé: </em><span style="color: red" id="divTienVe"></span></div>
+                        </div>
+                    </div>
+                    <div style="padding-top: 10px;text-align: center">
+                        <button class="btn btn-lg btn-success" onclick="btnHoanTat()">
+                            <span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Hoàn tất
+                        </button>
+                    </div>
+                </div>
+
+                <div id="divHoanTat" class="col-md-12 hidden" style="background: white; font-size: 16px; padding: 10px 10px">
+                    <h3 class="text-center" style="font-weight: bold">Đăng kí thành công</h3>
+                    <label>Thông tin đặt chỗ:</label>
+                    <div>Vé: <span id="RVdivLoaiVe" class="review"></span></div>
+                    <div>Hạng vé: <span id="RVdivHangVe" class="review"></span></div>
+                    <div>Điểm đi: <span id="RVdivDiemDi" class="review"></span><span id="RVdivDiemDen" class="review"></span></div>
+                    <div>Ngày đi: <span id="RVdivNgayDi" class="review"></span><span id="RVdivNgayVe" class="review"></span></div>
+                    <div>Số lượng hành khách: <span id="divSoLuongHanhKhach" class="review"></span></div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
-    <script src="Plugins/jquery.min.js"></script>
-    <script src="Plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="Plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="Plugins/bootstrap-datetimepicker/js/moment.min.js"></script>
-    <script src="Plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="Plugins/bootstrap-table/bootstrap-table.min.js"></script>
-    <script src="Plugins/bootstrap-table/bootstrap-table.js"></script>
-    <script src="Plugins/jquery-sweet-alert/sweetalert.min.js"></script>
-    <script src="index.js"></script>
+    <!--xem chuyen bay-->
+    <div id="divChuyenBay" class="tab-pane fade">
+        <div class="container" style="padding: 10px;background-color: white">
+            <div class="row">
+                <div class="col-md-12" style=" padding-top: 10px; padding-bottom: 10px">
+                    <div>
+                        <h4 style="font-weight: bold" class="pull-left">Danh sách chuyến bay đi</h4>
+
+                    </div>
+                    <table id="tbltabDanhSach">
+                        <thead>
+                        <tr>
+                            <th data-width="25%" data-field="Machuyenbay" data-visible="false"></th>
+                            <th data-width="20%" data-field="Ngay">Ngày</th>
+                            <th data-width="20%" data-field="Tenchuyenbay">Tên chuyến bay</th>
+                            <th data-width="20%" data-field="Soluongghe">Số lượng ghế</th>
+                            <th data-width="20%" data-field="Hang">Hạng vé</th>
+                            <th data-width="20%" data-field="Giaban">Giá bán</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="Plugins/jquery.min.js"></script>
+<script src="Plugins/bootstrap/js/bootstrap.js"></script>
+<script src="Plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="Plugins/bootstrap-datetimepicker/js/moment.min.js"></script>
+<script src="Plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="Plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="Plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="Plugins/jquery-sweet-alert/sweetalert.min.js"></script>
+<script src="index.js"></script>
 
 </body>
 </html>

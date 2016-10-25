@@ -12,7 +12,14 @@ $('#dtpNgayDi').datetimepicker({
 
 $('#dtpNgayVe').datetimepicker({
     format: 'YYYY-MM-DD',
-    defaultDate: new Date()
+    defaultDate: new Date(),
+    minDate: new Date()
+}); 
+
+$('#dtpNgayDiCB').datetimepicker({
+    format: 'YYYY-MM-DD',
+    defaultDate: new Date(),
+    minDate: new Date()
 });
 
 var data = [
@@ -28,6 +35,11 @@ $("table[id$=tblDanhSachChuyenBayDi]").bootstrapTable({
 });
 
 $("table[id$=tblDanhSachChuyenBayVe]").bootstrapTable({
+    classes: 'table table-hover',
+    //data: data
+}); 
+
+$("table[id$=tbltabDanhSach]").bootstrapTable({
     classes: 'table table-hover',
     //data: data
 });
@@ -56,7 +68,12 @@ function ShowDatCho() {
         sweetAlert("Chỉ đặt vé tối đa là 6 người", "", "error");
         return;
     }
+    //if ($('#cboDiemDi').val() == "") {
+    //    sweetAlert("Bạn chưa chọn điểm đi", "", "error");
+    //    return;
+    //}
     soluongve = strSoHanhKhach.toString();
+
     //if (parseInt(strNgayVe[2]) < parseInt(strNgayDi[2])
     //    || parseInt(strNgayVe[1]) < parseInt(strNgayDi[1])
     //    || parseInt(strNgayVe[0]) < parseInt(strNgayDi[0])) {
@@ -186,7 +203,7 @@ function btnHoanTat() {
         return;
     }
 
-
+    reviewThongTin();
 
 
     $.ajax({
@@ -230,6 +247,25 @@ function btnHoanTat() {
 
     });
 
+};
+
+//chuyen sang tab thanh cong
+function reviewThongTin() {
+    var strNgayVe = "";
+    if ($("#rbKhuHoi").is(":checked")) {
+        $('#RVdivLoaiVe').val("Khứ hồi");
+        strNgayVe = $('#txtNgayVe').val();
+    }
+    else {
+        $('#RVdivLoaiVe').val("Một chiều");
+    }
+    
+    $('#RVdivHangVe').val($('#cboHangVe :selected').val());
+    $('#RVdivDiemDi').val($('#cboDiemDi :selected').val());
+    $('#RVdivDiemDen').val($('#cboHangVe :selected').val());
+    $('#RVdivNgayDi').val($('#txtNgayDi').val());
+    $('#RVdivNgayVe').val(strNgayVe);
+    $('#divSoLuongHanhKhach').val(strSoHanhKhach);
 };
 
 $("input[name='rbChuyenBay']").click(function () {
@@ -281,7 +317,10 @@ $('#cboDiemDi').change(function () {
 });
 
 
-
+//them chuyen bay
+function NewChuyenBay() {
+    $('#divChiTietChuyenBay').removeClass('hidden');
+};
 
 
 

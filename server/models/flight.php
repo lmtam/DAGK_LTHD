@@ -72,11 +72,11 @@
 			try
 			{
 				$a=$this->con->prepare($sql);
-				$a->bindParam("noidi",$params["noidi"]);
-				$a->bindParam("noiden",$params["noiden"]);
-				$a->bindParam("ngay",$params["ngay"]);
-				$a->bindParam("soluongkhach",$params["soluongkhach"]);
-				$a->bindParam("hang",$params["hang"]);
+				$a->bindParam("noidi",$params["noidi"],PDO::PARAM_STR);
+				$a->bindParam("noiden",$params["noiden"],PDO::PARAM_STR);
+				$a->bindParam("ngay",$params["ngay"],PDO::PARAM_STR);
+				$a->bindParam("soluongkhach",$params["soluongkhach"],PDO::PARAM_STR);
+				$a->bindParam("hang",$params["hang"],PDO::PARAM_STR);
 				$a->execute();
 				$list=$a->fetchAll(PDO::FETCH_BOTH);
 				$this->Disconnection();
@@ -94,10 +94,10 @@
 			try
 			{
 				$a=$this->con->prepare($sql);
-				$a->bindParam("soghe",$soluong);
-				$a->bindParam("macb",$macb);
-				$a->bindParam("hang",$hang);
-				$a->bindParam("mucgia",$muc);
+				$a->bindParam("soghe",$soluong,PDO::PARAM_STR);
+				$a->bindParam("macb",$macb,PDO::PARAM_STR);
+				$a->bindParam("hang",$hang,PDO::PARAM_STR);
+				$a->bindParam("mucgia",$muc,PDO::PARAM_STR);
 				$a->execute();
 				$this->Disconnection();
 				return true;

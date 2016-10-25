@@ -35,14 +35,12 @@
 			$sql="INSERT INTO chitietchuyenbay VALUES(:madc,:macb,:ngay,:hang,:mucgia)";
 			try
 			{
-				date_default_timezone_set("Asia/Bangkok");
-				$ngay=date("Y-m-d");
 				$a=$this->con->prepare($sql);
-				$a->bindParam("madc",$_SESSION["madc"]);
-				$a->bindParam("macb",$params["macb"]);
-				$a->bindParam("ngay",$ngay);
-				$a->bindParam("hang",$params["hang"]);
-				$a->bindParam("mucgia",$params["mucgia"]);
+				$a->bindParam("madc",$_SESSION["madc"],PDO::PARAM_STR);
+				$a->bindParam("macb",$params["macb"],PDO::PARAM_STR);
+				$a->bindParam("ngay",$params["ngay"],PDO::PARAM_STR);
+				$a->bindParam("hang",$params["hang"],PDO::PARAM_STR);
+				$a->bindParam("mucgia",$params["mucgia"],PDO::PARAM_STR);
 				$a->execute();
 				$this->Disconnection();
 				return true;

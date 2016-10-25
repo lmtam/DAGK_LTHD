@@ -8,7 +8,7 @@
 		{
 			$this->model=new FlightDetail_Model();
 		}
-		public function createFlightDetail($macb,$hang,$mucgia)
+		public function createFlightDetail($macb,$ngay,$hang,$mucgia)
 		{
 			if(empty($macb))
 			{
@@ -25,12 +25,18 @@
 				echo "Xin nhập mức giá vé";
 				return false;
 			}
+			elseif(empty($ngay))
+			{
+				echo "Xin nhập ngày";
+				return false;
+			}
 			else
 			{
 				$params=array(
 					"macb"=>$macb,
 					"hang"=>$hang,
-					"mucgia"=>$mucgia
+					"mucgia"=>$mucgia,
+					"ngay"=>$ngay
 					);
 				return $this->model->createFlightDetail($params);
 			}

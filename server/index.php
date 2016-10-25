@@ -59,12 +59,14 @@
 	});
 	$app->post("/flightdetails",function($request,$response,$args)
 	{
+		$data = $request->getParsedBody();
 		$con=new FlightDetail_Controller();
-		$macb=$request["macb"];
-		$hang=$request["hang"];
-		$mucgia=$request["mucgia"];
+		$macb=$data["macb"];
+		$ngay = $data["ngay"];
+		$hang=$data["hang"];
+		$mucgia=$data["mucgia"]
 		
-		$result=$con->createFlightDetail($macb,$hang,$mucgia);
+		$result=$con->createFlightDetail($macb,$ngay,$hang,$mucgia);
 		echo $result;
 	});
 	$app->get("/passengers",function($request,$response,$args)	

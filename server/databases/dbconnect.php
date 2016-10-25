@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(__FILE__).'/constant.php';
+	require_once 'constant.php';
 	class dbConnection
 	{
 		private $con;

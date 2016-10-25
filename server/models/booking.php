@@ -1,5 +1,5 @@
 <?php
-	//session_start();
+	
 	require_once("databases/dbconnect.php");
 	class Booking_Model
 	{
@@ -21,12 +21,11 @@
 
 			try
 			{
-				//$madc=$this->generateUniqueID();
+				
 				date_default_timezone_set("Asia/Bangkok");
 				$thoigian=date("Y-m-d H-i-s");
 				
 				$a=$this->con->prepare($sql);
-				
 				$a->bindParam("madc",$_SESSION['madc'],PDO::PARAM_STR);
 				$a->bindParam("thoigian",$thoigian,PDO::PARAM_STR);
 				$a->bindParam("tongtien",$tongtien,PDO::PARAM_STR);

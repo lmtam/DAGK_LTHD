@@ -51,7 +51,6 @@
 		{
             $sql="SELECT DISTINCT CB.machuyenbay,CB.Noiden, SB.tensanbay FROM chuyenbay CB join sanbay SB on CB.Noiden = SB.masanbay where CB.Noidi=:noidi ";
 
-//			$sql="SELECT DISTINCT Noiden FROM chuyenbay WHERE Noidi=:noidi";
 			try
 			{
 				$a=$this->con->prepare($sql);

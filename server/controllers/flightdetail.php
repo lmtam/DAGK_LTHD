@@ -10,12 +10,30 @@
 		}
 		public function createFlightDetail($macb,$hang,$mucgia)
 		{
-			$params=array(
-			"macb"=>$macb,
-			"hang"=>$hang,
-			"mucgia"=>$mucgia
-			);
-			return $this->model->createFlightDetail($params);
+			if(empty($macb))
+			{
+				echo "Xin nhập mã chuyến bay";
+				return false;
+			}
+			elseif(empty($hang))
+			{
+				echo "Xin nhập hạng vé";
+				return false;
+			}
+			elseif(empty($mucgia))
+			{
+				echo "Xin nhập mức giá vé";
+				return false;
+			}
+			else
+			{
+				$params=array(
+					"macb"=>$macb,
+					"hang"=>$hang,
+					"mucgia"=>$mucgia
+					);
+				return $this->model->createFlightDetail($params);
+			}
 			
 		}
 		public function getList()

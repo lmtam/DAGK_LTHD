@@ -9,8 +9,36 @@
 		}
 		public function createBooking($tongtien,$danhxung,$hoten,$sdt,$email)
 		{
-
-			return $this->model->createBooking($tongtien,$danhxung,$hoten,$sdt,$email);
+			if(empty($tongtien))
+			{
+				echo "Tiền không được NULL";
+				return false;
+			}
+			elseif(empty($danhxung))
+			{
+				echo "Danh xưng không được NULL";
+				return false;
+			}
+			elseif(empty($hoten))
+			{
+				echo "Họ tên không được NULL";
+				return false;
+			}
+			elseif(empty($sdt))
+			{
+				echo "SĐT không được NULL";
+				return false;
+			}
+			elseif(empty($email))
+			{
+				echo "Email không được NULL";
+				return false;
+			}
+			else
+			{
+				return $this->model->createBooking($tongtien,$danhxung,$hoten,$sdt,$email);
+			}
+			
 		}
 		public function getBookingInfo()
 		{

@@ -34,6 +34,11 @@
 		public function showDepartureAirportList()
 		{
 			$madc=$this->generateUniqueID();
+			if(empty($madc))
+			{
+				echo "Mã đặt chỗ không được NULL";
+				return;
+			}
             $_SESSION["madc"]=$madc;
 			$list=$this->model->getDepartureAirportList();
 			if(!$list)
@@ -54,7 +59,8 @@
 			
 			if(empty($noidi))
 			{
-				return "Xin chọn sân bay đi";
+				 echo "Xin chọn sân bay đi";
+				 return false;
 
 			}
 			$list=$this->model->getArrivalAirportList($noidi);
@@ -74,32 +80,68 @@
 		{
 			if(empty($macb))
 			{
-				return"Xin nhập mã chuyến bay";
+				 echo "Xin nhập mã chuyến bay";
+				 return false;
 
 			}
 			elseif($soluong<0)
 			{
-				return "Số lương không được âm";
+				 echo "Số lương không được âm";
+				 return false;
 
 			}
 			elseif(empty($hang))
 			{
-				return "Xin nhập hạng vé";
+				echo "Xin nhập hạng vé";
+				return false;
 			}
 			elseif(empty($muc))
 			{
-				return "Xin nhập mức giá vé";
+				
+				echo "Xin nhập mức giá vé";
+				return false;
 			}
 			else
 			{
-				$this->model->updateSeat($macb,$hang,$muc,$soluong);
-				return true;
+				return $this->model->updateSeat($macb,$hang,$muc,$soluong);
+				
 			}
 			
 		}
 		public function findFlightWithCondition($noidi,$noiden,$ngaydi,$soluongkhach,$hang)
 		{
-			$params=array(
+			if(empty($noidi))
+			{
+				 echo "Xin nhập mã sân bay đi";
+				 return false;
+
+			}
+			elseif($noiden)
+			{
+				 echo "Số lương không được âm";
+				 return false;
+
+			}
+			elseif(empty($ngaydi))
+			{
+				echo "Xin nhập ngày đi";
+				return false;
+			}
+			elseif($soluongkhach<=0)
+			{
+				
+				echo "Số lượng khách tìm kiếm không được âm";
+				return false;
+			}
+			elseif(empty($hang)))
+			{
+				
+				echo "Xin nhập hạng vé";
+				return false;
+			}
+			else
+			{
+				$params=array(
             "noidi"=>$noidi,
             "noiden"=>$noiden,
             "ngay"=>$ngaydi,
@@ -108,6 +150,9 @@
             );
             $list=$this->model->findFlightWithCondition($params);
             return json_encode($list);
+				
+			}
+			
 		}
 	}
 ?>

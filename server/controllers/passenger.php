@@ -22,12 +22,31 @@
 		}
 		public function createPassenger($danhxung,$ho,$ten)
 		{
-			$params=array(
-			"danhxung"=>$danhxung,
-			"ho"=>$ho,
-			"ten"=>$ten
-			);
-			return $this->model->createPassenger($params);
+			if(empty($danhxung))
+			{
+				echo "Xin nhập danh xưng của khách hàng";
+				return false;
+			}
+			elseif(empty($ho))
+			{
+				echo "Xin nhập Họ của khách hàng";
+				return false;
+			}
+			elseif(empty($ten))
+			{
+				echo "Xin nhập Tên khách hàng";
+				return false;
+			}
+			else
+			{
+				$params=array(
+					"danhxung"=>$danhxung,
+					"ho"=>$ho,
+					"ten"=>$ten
+					);
+				return $this->model->createPassenger($params);
+			}
+			
 		}
 	}
 ?>
